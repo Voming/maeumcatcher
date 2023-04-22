@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/playItem"
+        android:icon="@drawable/baseline_extension_24"
+        android:enabled="true"
+        android:title="감정단어랑 놀기" />
+    <item
+        android:id="@+id/emotionItem"
+        android:icon="@drawable/baseline_add_reaction_24"
+        android:enabled="true"
+        android:title="다양한 내 표정" />
+    <item
+        android:id="@+id/feelingItem"
+        android:icon="@drawable/baseline_fact_check_24"
+        android:enabled="true"
+        android:title="무슨 감정일까" />
+    <item
+        android:id="@+id/mypageItem"
+        android:icon="@drawable/baseline_account_circle_24"
+        android:enabled="true"
+        android:title="마이페이지" />
+</menu>
