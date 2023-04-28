@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FollowFacesActivity">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="표정 따라하기"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/darkbrown"/>
+    
+    <ImageView
+        android:id="@+id/faceView"
+        android:layout_width="250dp"
+        android:layout_height="313dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="위 표정을 따라하여 사진을 찍어보아요!"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="15dp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/darkbrown"/>
+    <Button
+        android:id="@+id/camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/darkbrown"
+        android:text="촬영하기"
+        android:textStyle="bold"/>
+</LinearLayout>
