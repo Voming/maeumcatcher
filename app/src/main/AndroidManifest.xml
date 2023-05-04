@@ -34,6 +34,14 @@
             android:exported="false"/>
         <activity android:name=".VariousEmotion"
             android:exported="false"/>
+        <activity android:name=".VariousEmotionAngry"
+            android:exported="false"/>
+        <activity android:name=".VariousEmotionDisgust"
+            android:exported="false"/>
+        <activity android:name=".VariousEmotionSad"
+            android:exported="false"/>
+        <activity android:name=".VariousEmotionFear"
+            android:exported="false"/>
     </application>
 
 </manifest>
