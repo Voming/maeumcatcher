@@ -25,7 +25,6 @@ public class FollowFacesActivity extends AppCompatActivity {
     ImageView followView;
     String emotion;
 
-    LinearLayout ImageLayout;
 
     static final int REQUEST_IMAGE_CODE = 101;
     int[] img = {R.drawable.angry_1, R.drawable.angry_2, R.drawable.angry_3, R.drawable.angry_4, R.drawable.disgust_1,
@@ -43,6 +42,8 @@ public class FollowFacesActivity extends AppCompatActivity {
     Button camera;
     Button retry;
 
+    Bitmap imageBitmap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,6 @@ public class FollowFacesActivity extends AppCompatActivity {
         followView = (ImageView)findViewById(R.id.followView);
         camera = findViewById(R.id.camera);
         retry = findViewById(R.id.retry);
-        ImageLayout = (LinearLayout)findViewById(R.id.ImageLayout);
         textView2 = findViewById(R.id.textView2);
 
 
@@ -86,10 +86,12 @@ public class FollowFacesActivity extends AppCompatActivity {
             }
         });
 
-        camera.setOnClickListener(new View.OnClickListener() {
+        retry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), CheckEmotionActivity.class);
+                intent.putExtra("사진", imageBitmap);
+                startActivity(intent);
             }
         });
 
@@ -141,7 +143,7 @@ public class FollowFacesActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_IMAGE_CODE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageBitmap = (Bitmap) extras.get("data");
             followView.setImageBitmap(imageBitmap);
         }
 
