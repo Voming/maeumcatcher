@@ -1,74 +1,53 @@
 package com.example.maumcatcher;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.ArrayList;
+import android.graphics.drawable.Drawable;
 
-public class CustomListView extends BaseAdapter {
+public class CustomListView {
 
-    LayoutInflater layoutInflater = null;
-    private ArrayList<ListData> listViewData = null;
-    private int count = 0;
+    private String name;
+    private String clas;
+    private String sense;
+    private String synonym;
+    private String example;
 
-    public CustomListView(ArrayList<ListData> listData) {
-        listViewData = listData;
-        count = listViewData.size();
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public int getCount() {
-        return count;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public Object getItem(int position) {
-        return null;
+    public String getClas() {
+        return clas;
     }
 
-    @Override
-    public long getItemId(int position) {
-        return 0;
+    public void setClas(String clas) {
+        this.clas = clas;
     }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            final Context context = parent.getContext();
-            if (layoutInflater == null) {
-                layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            }
-            convertView = layoutInflater.inflate(R.layout.custom_listview, parent, false);
-        }
-
-        TextView class_id = convertView.findViewById(R.id.class_id);
-        TextView class_txt = convertView.findViewById(R.id.class_txt);
-        TextView name = convertView.findViewById(R.id.name);
-        TextView body1 = convertView.findViewById(R.id.body1);
-        TextView body2 = convertView.findViewById(R.id.body2);
-        TextView body3 = convertView.findViewById(R.id.body3);
-
-        class_id.setText(listViewData.get(position).class_id);
-        class_txt.setText(listViewData.get(position).class_txt);
-        name.setText(listViewData.get(position).name);
-        body1.setText(listViewData.get(position).body1);
-        body2.setText(listViewData.get(position).body2);
-        body3.setText(listViewData.get(position).body3);
-
-        return convertView;
+    public String getSense() {
+        return sense;
     }
 
-    public class ListData {
-        public String class_id = "";
-        public String class_txt = "";
-        public String name = "";
-        public String body1 = "";
-        public String body2 = "";
-        public String body3 = "";
+    public void setSense(String sense) {
+        this.sense = sense;
+    }
+
+    public String getSynonym() {
+        return synonym;
+    }
+
+    public void setSynonym(String synonym) {
+        this.synonym = synonym;
+    }
+
+    public String getExample() {
+        return example;
+    }
+
+    public void setExample(String example) {
+        this.example = example;
     }
 
 }

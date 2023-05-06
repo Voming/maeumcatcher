@@ -38,7 +38,7 @@ public class PlayFragment extends Fragment {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),PlaySubActivity.class); //fragment라서 activity intent와는 다른 방식
+                Intent intent = new Intent(getActivity(),GuessName.class); //fragment라서 activity intent와는 다른 방식
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
