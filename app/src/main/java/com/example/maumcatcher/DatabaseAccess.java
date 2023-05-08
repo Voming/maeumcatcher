@@ -42,65 +42,11 @@ public class DatabaseAccess {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
+            //list.add(cursor.getString(2));
             cursor.moveToNext();
         }
         cursor.close();
         return list;
     }
 
-    public List<String> getAngry() {
-        String sql = "SELECT * FROM emotion WHERE class = ?";
-        String[] selectionArgs = { "분노" };
-        List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery(sql, selectionArgs);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(0));
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return list;
-    }
-
-    public List<String> getDisgust() {
-        String sql = "SELECT * FROM emotion WHERE class = ?";
-        String[] selectionArgs = { "불쾌" };
-        List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery(sql, selectionArgs);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(0));
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return list;
-    }
-
-    public List<String> getSad() {
-        String sql = "SELECT * FROM emotion WHERE class = ?";
-        String[] selectionArgs = { "슬픔" };
-        List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery(sql, selectionArgs);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(0));
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return list;
-    }
-
-    public List<String> getFear() {
-        String sql = "SELECT * FROM emotion WHERE class = ?";
-        String[] selectionArgs = { "두려움" };
-        List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery(sql, selectionArgs);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(0));
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return list;
-    }
 }
