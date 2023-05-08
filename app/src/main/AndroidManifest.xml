@@ -18,6 +18,8 @@
         <activity
             android:name=".FollowFacesActivity"
             android:exported="false" />
+        <activity android:name=".CheckEmotionActivity"
+            android:exported="false" />
         <activity
             android:name=".EmotionSubActivity"
             android:exported="false" />
