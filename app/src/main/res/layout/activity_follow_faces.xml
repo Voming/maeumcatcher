@@ -23,7 +23,7 @@
         android:id="@+id/ImageLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical"
         android:layout_gravity="center" >
 
@@ -34,9 +34,11 @@
             android:scaleType = "centerCrop"/>
         <ImageView
             android:id="@+id/followView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType = "centerCrop"/>
+            android:layout_width="250dp"
+            android:layout_height="313dp"
+            android:scaleType = "centerCrop"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"/>
 
     </LinearLayout>
     <TextView
@@ -55,25 +57,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/review"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@color/darkbrown"
+            android:text="다시 보기"
+            android:visibility="gone"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/camera"
             android:layout_width="130dp"
             android:layout_height="50dp"
-            android:layout_marginRight="10dp"
-            android:backgroundTint="@color/darkbrown"
-            android:text="촬영하기"
-            android:textStyle="bold"/>
-        <Button
-            android:id="@+id/retry"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
             android:layout_marginLeft="10dp"
             android:backgroundTint="@color/darkbrown"
-            android:text="정답 선택하기"
+            android:text="촬영 하기"
             android:textStyle="bold"/>
 
+
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/retry"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:backgroundTint="@color/darkbrown"
+        android:text="정답 선택하기"
+        android:layout_gravity="center"
+        android:textStyle="bold"/>
 
 </LinearLayout>

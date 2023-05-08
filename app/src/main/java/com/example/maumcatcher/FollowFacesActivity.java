@@ -1,16 +1,20 @@
 package com.example.maumcatcher;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -37,10 +41,12 @@ public class FollowFacesActivity extends AppCompatActivity {
             R.drawable.surprise_2, R.drawable.surprise_3, R.drawable.surprise_4, R.drawable.surprise_5, R.drawable.surprise_6,
             R.drawable.surprise_7
     };
+    int num;
 
     TextView textView2;
     Button camera;
     Button retry;
+    Button review;
 
     Bitmap imageBitmap;
 
@@ -54,52 +60,13 @@ public class FollowFacesActivity extends AppCompatActivity {
         followView = (ImageView)findViewById(R.id.followView);
         camera = findViewById(R.id.camera);
         retry = findViewById(R.id.retry);
+        review = findViewById(R.id.review);
         textView2 = findViewById(R.id.textView2);
 
-
-        camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                takePic();
-
-                ViewGroup.LayoutParams layoutParams1 = faceView.getLayoutParams();
-                int width1 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,0,getResources().getDisplayMetrics());
-                layoutParams1.width = width1;
-                int height1 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,0,getResources().getDisplayMetrics());
-                layoutParams1.height = height1;
-
-                ViewGroup.LayoutParams layoutParams2 = followView.getLayoutParams();
-                int width2 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,250,getResources().getDisplayMetrics());
-                layoutParams2.width = width2;
-                int height2 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,313,getResources().getDisplayMetrics());
-                layoutParams2.height = height2;
-
-                ViewGroup.LayoutParams layoutParams3 = retry.getLayoutParams();
-                int width3 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,130,getResources().getDisplayMetrics());
-                layoutParams3.width = width3;
-                int height3 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,50,getResources().getDisplayMetrics());
-                layoutParams3.height = height3;
-
-                camera.setText("다시 찍기");
-                textView2.setText("잘 따라 했는지 확인해 볼까요?");
-
-            }
-        });
-
-        retry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CheckEmotionActivity.class);
-                intent.putExtra("사진", imageBitmap);
-                startActivity(intent);
-            }
-        });
-
         Random ram = new Random();
-        int num = ram.nextInt(img.length);
+        num = ram.nextInt(img.length);
 
         faceView.setBackgroundResource(img[num]);
-        System.out.println(num);
 
         if(num<=3){
             emotion = "angry";
@@ -125,7 +92,61 @@ public class FollowFacesActivity extends AppCompatActivity {
         else{
             emotion = "surprise";
         }
-        System.out.println(emotion);
+
+
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takePic();
+                faceView.setVisibility(View.GONE);
+                followView.setVisibility(View.VISIBLE);
+                retry.setVisibility(View.VISIBLE);
+                review.setVisibility(View.VISIBLE);
+
+                camera.setText("다시 찍기");
+                textView2.setText("잘 따라 했는지 확인해 볼까요?");
+            }
+        });
+
+        retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CheckEmotionActivity.class);
+                intent.putExtra("사진", imageBitmap);
+                intent.putExtra("감정", emotion);
+
+                startActivity(intent);
+            }
+        });
+
+
+        review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(FollowFacesActivity.this);
+
+                v = LayoutInflater.from(FollowFacesActivity.this).inflate(
+                        R.layout.follow_custom_dialog,
+                        (LinearLayout)findViewById(R.id.layoutDialog));
+
+               //이미지 설정
+                builder.setView(v);
+                ((ImageView)v.findViewById(R.id.image)).setImageResource(img[num]);
+
+                AlertDialog alertDialog = builder.create();
+
+                v.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alertDialog. dismiss();
+                    }
+                });
+
+                alertDialog.show();
+            }
+
+        });
+
 
     }
 
@@ -138,15 +159,15 @@ public class FollowFacesActivity extends AppCompatActivity {
 
 
     }
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_IMAGE_CODE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             imageBitmap = (Bitmap) extras.get("data");
             followView.setImageBitmap(imageBitmap);
+            System.out.print(emotion);
         }
 
     }
-
 }
