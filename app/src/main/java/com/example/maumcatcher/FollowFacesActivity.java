@@ -1,28 +1,23 @@
 package com.example.maumcatcher;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.graphics.Point;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Random;
+
 
 public class FollowFacesActivity extends AppCompatActivity {
     ImageView faceView;
@@ -68,30 +63,31 @@ public class FollowFacesActivity extends AppCompatActivity {
 
         faceView.setBackgroundResource(img[num]);
 
+
+
         if(num<=3){
             emotion = "angry";
         }
-        else if(4<=num && num<=10){
+        else if(num<=10){
             emotion = "disgust";
         }
-        else if(11<=num && num<=14){
+        else if(num<=14){
             emotion = "fear";
         }
-        else if(15<=num && num<=22){
+        else if(num<=22){
             emotion = "happy";
         }
-        else if(23<=num && num<=27){
-            emotion = "disgust";
-        }
-        else if(28<=num && num<=32){
+        else if(num<=27){
             emotion = "neutral";
         }
-        else if(33<=num && num<=38){
+        else if(num<=33){
             emotion = "sad";
         }
         else{
             emotion = "surprise";
         }
+
+        Log.v("em", emotion);
 
 
         camera.setOnClickListener(new View.OnClickListener() {
