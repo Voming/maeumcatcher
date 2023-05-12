@@ -142,7 +142,7 @@
             android:id="@+id/analyze"
             android:layout_width="130dp"
             android:layout_height="50dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:backgroundTint="@color/darkbrown"
             android:text="분석 하기"
            />

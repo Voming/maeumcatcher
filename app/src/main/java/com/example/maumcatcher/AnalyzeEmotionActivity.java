@@ -1,14 +1,19 @@
 package com.example.maumcatcher;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static java.lang.Integer.parseInt;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,38 +32,155 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Objects;
 import java.util.stream.IntStream;
+
 
 public class AnalyzeEmotionActivity extends AppCompatActivity {
 
-    TextView txt;
-    ImageView img;
+
+    ImageView level;
+    TextView confidence_view;
+    Button exit;
+    Button retry;
+    Button save;
+    Button gallery;
+    TextView save_txt;
 
     String FaceValue;
     String value;
     String confidence;
 
+    Bitmap bitmap;
+    String emotion;
+
+
+    private static Context context;
+    Uri imageFileUri;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analyze_emotion);
+        context = getApplicationContext();
 
         Intent intent = getIntent();
-        Bitmap bitmap = intent.getParcelableExtra("사진");
-        String emotion = intent.getStringExtra("감정");
+        bitmap = intent.getParcelableExtra("사진");
+        emotion = intent.getStringExtra("감정");
 
-        txt = findViewById(R.id.txt);
-        img = findViewById(R.id.img);
-        txt.setText(emotion);
-        img.setImageBitmap(bitmap);
+
+        level = findViewById(R.id.level);
+        confidence_view = findViewById(R.id.confidence);
+        exit = findViewById(R.id.exit);
+        retry = findViewById(R.id.retry);
+        save = findViewById(R.id.save);
+        gallery = findViewById(R.id.gallery);
+        save_txt = findViewById(R.id.save_txt);
+
 
         SaveBitmapToFileCache(bitmap, "data/data/com.example.maumcatcher/test.jpg");
 
         new Thread(() -> {
             apiStart(); // network 동작, 인터넷에서 xml을 받아오는 코드
         }).start();
-    }
 
+        if(Objects.equals(value, emotion)){
+            if(parseInt(confidence) <=  20.0){
+                level.setImageResource(R.drawable.level0);
+            }else  if(parseInt(confidence) <=  40.0){
+                level.setImageResource(R.drawable.level1);
+            }else  if(parseInt(confidence) <=  60.0){
+                level.setImageResource(R.drawable.level2);
+            }else  if(parseInt(confidence) <=  70.0){
+                level.setImageResource(R.drawable.level3);
+            }else  if(parseInt(confidence) <=  80.0){
+                level.setImageResource(R.drawable.level4);
+            }else  if(parseInt(confidence) <=  90.0){
+                level.setImageResource(R.drawable.level5);
+            }
+
+            confidence_view.setText("정확도는 " + parseInt(confidence) + "%");
+        }
+        else{
+            level.setImageResource(R.drawable.level0);
+            confidence_view.setText("같은 표정이 아닙니다.");
+            save_txt.setVisibility(View.GONE);
+        }
+
+
+
+//버튼이벤트------------------------------------------------------------------
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                startActivity(intent);
+            }
+        });
+        retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FollowFacesActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
+        long now = System.currentTimeMillis(); // 현재시간 받아오기
+        Date date = new Date(now); // Date 객체 생성
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String nowTime = sdf.format(date);
+
+        String nowTime1 = nowTime.replace("-","_");
+        String nowTime2 = nowTime1.replace(":","_");
+        String nowTime3 = nowTime2.replace(" ","_");
+        System.out.println(nowTime3);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sdPath = "data/data/com.example.maumcatcher/" + emotion;
+                File saveFile = new File(sdPath);
+
+                OutputStream out = null;
+
+                try{
+                    if(!saveFile.isDirectory()){
+                        saveFile.mkdirs();
+                    }
+                    saveFile.createNewFile();
+                    out = new FileOutputStream("data/data/com.example.maumcatcher/" + emotion + "/" + nowTime3 + ".jpg");
+
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+                    out.close();
+
+                }catch(FileNotFoundException exception){
+                    Log.e("FileNotFoundException", exception.getMessage());
+                }catch(IOException exception){
+                    Log.e("IOException", exception.getMessage());
+                }
+
+            }
+        });
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CheckEmotionActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
+    } //-------------------------------------------------------------------------------------------------
+
+
+
+    //bitmap 파일로 변화하여 api 분석
     private void SaveBitmapToFileCache(Bitmap bitmap, String strFilePath){
         File fileCacheItem = new File(strFilePath);
         OutputStream out = null;
@@ -87,7 +209,7 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
         }
     }
 
-
+    //api 사용
     public  void apiStart(){
         StringBuffer reqStr = new StringBuffer();
         String clientId = "3qYE8xxUtVid9KvmGwFU";//애플리케이션 클라이언트 아이디값";
@@ -95,7 +217,7 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
 
         try {
             String paramName = "image"; // 파라미터명은 image로 지정
-            String imgFile ="data/data/com.example.maumcatcher/test.jpg";;
+            String imgFile ="data/data/com.example.maumcatcher/test.jpg";
             File uploadFile = new File(imgFile);
             //String apiURL = "https://openapi.naver.com/v1/vision/celebrity"; // 유명인 얼굴 인식
             String apiURL = "https://openapi.naver.com/v1/vision/face"; // 얼굴 감지
