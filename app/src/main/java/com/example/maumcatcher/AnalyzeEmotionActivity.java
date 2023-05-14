@@ -2,10 +2,8 @@ package com.example.maumcatcher;
 
 import static java.lang.Integer.parseInt;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -56,17 +54,13 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
     Bitmap bitmap;
     String emotion;
 
-
-    private static Context context;
-    Uri imageFileUri;
-
+    String setLv;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analyze_emotion);
-        context = getApplicationContext();
 
         Intent intent = getIntent();
         bitmap = intent.getParcelableExtra("사진");
@@ -86,30 +80,52 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
 
         new Thread(() -> {
             apiStart(); // network 동작, 인터넷에서 xml을 받아오는 코드
-        }).start();
 
-        if(Objects.equals(value, emotion)){
-            if(parseInt(confidence) <=  20.0){
-                level.setImageResource(R.drawable.level0);
-            }else  if(parseInt(confidence) <=  40.0){
-                level.setImageResource(R.drawable.level1);
-            }else  if(parseInt(confidence) <=  60.0){
-                level.setImageResource(R.drawable.level2);
-            }else  if(parseInt(confidence) <=  70.0){
-                level.setImageResource(R.drawable.level3);
-            }else  if(parseInt(confidence) <=  80.0){
-                level.setImageResource(R.drawable.level4);
-            }else  if(parseInt(confidence) <=  90.0){
-                level.setImageResource(R.drawable.level5);
+            //api 감정 재분류
+            if(Objects.equals(value, "laugh") || Objects.equals(value, "smile")){
+                value = "happy";
             }
 
-            confidence_view.setText("정확도는 " + parseInt(confidence) + "%");
-        }
-        else{
+            System.out.println("원래 감정" + emotion);
+            System.out.println("분석한 감정" + value);
+
+            if(Objects.equals(value, emotion)){
+                if(parseInt(confidence) <=  40.0){
+                    setLv = "level1";
+                }else  if(parseInt(confidence) <=  60.0){
+                    setLv = "level2";
+                }else  if(parseInt(confidence) <=  70.0){
+                    setLv = "level3";
+                }else  if(parseInt(confidence) <=  80.0){
+                    setLv = "level4";
+                }else  if(parseInt(confidence) <=  90.0){
+                    setLv = "level5";
+                }
+            }
+            else{
+                setLv = "level0";
+            }
+        }).start();
+
+        System.out.println("원래 감정" + emotion);
+        System.out.println("분석한 감정" + value);
+
+        if(setLv =="level0"){
             level.setImageResource(R.drawable.level0);
             confidence_view.setText("같은 표정이 아닙니다.");
             save_txt.setVisibility(View.GONE);
+        }else if(setLv =="level1"){
+            level.setImageResource(R.drawable.level1);
+        }else if(setLv =="level2"){
+            level.setImageResource(R.drawable.level2);
+        }else if(setLv =="level3"){
+            level.setImageResource(R.drawable.level3);
+        }else if(setLv =="level4"){
+            level.setImageResource(R.drawable.level4);
+        }else if(setLv =="level5"){
+            level.setImageResource(R.drawable.level5);
         }
+
 
 
 
