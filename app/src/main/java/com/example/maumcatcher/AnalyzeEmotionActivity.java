@@ -186,7 +186,7 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CheckEmotionActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EmotionGalleryActivity.class);
 
                 startActivity(intent);
             }

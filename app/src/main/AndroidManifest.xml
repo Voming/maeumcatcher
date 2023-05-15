@@ -13,7 +13,6 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -23,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaumCatcher"
         tools:targetApi="31">
+        <activity
+            android:name=".FindSameEmotionActivity"
+            android:exported="false" />
         <activity
             android:name=".EmotionGalleryActivity"
             android:exported="false" />
