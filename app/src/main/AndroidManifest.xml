@@ -38,7 +38,7 @@
             android:exported="false"/>
         <activity android:name=".VariousEmotionFear"
             android:exported="false"/>
-        <activity android:name=".GuessName"
+        <activity android:name=".GuessActivity"
             android:exported="false"/>
     </application>
 
