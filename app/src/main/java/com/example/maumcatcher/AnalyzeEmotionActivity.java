@@ -186,7 +186,11 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 Intent intent = new Intent(getApplicationContext(), EmotionGalleryActivity.class);
+=======
+                Intent intent = new Intent(getApplicationContext(), CheckEmotionActivity.class);
+>>>>>>> origin/HannaKim
 
                 startActivity(intent);
             }

@@ -1,34 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp">
+    android:layout_marginRight="20dp"
+    tools:context=".GuessActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/class_id"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="이름을 맞춰봐"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <TextView
+                android:id="@+id/class_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="이름을 맞춰봐"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/nextBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:src="@drawable/button_arrow"
+                android:onClick="NextButton"
+                android:background="@android:color/transparent"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/class_txt"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="제시된 단어와 비슷한 감정을 고르세요"
             android:textColor="#656F77"
             android:textSize="14dp" />
-
-
 
         <TextView
             android:id="@+id/exampletxt"
@@ -36,64 +58,92 @@
             android:layout_height="wrap_content"
             android:text="예시 단어"
             android:textColor="@color/black"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="80dp"
             android:textAlignment="center"
             android:textSize="20dp" />
 
-        <Button
-            android:id="@+id/happy"
-            android:layout_width="182dp"
-            android:layout_height="57dp"
-            android:text="기쁨"
-            android:textSize="20sp"
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="60dp"
-            android:layout_gravity="center"
-            android:onClick="ClickButton1"
-            android:background="@drawable/button_patter"> </Button>
+            android:layout_marginLeft="30dp">
 
-        <Button
-            android:id="@+id/fear"
-            android:layout_width="182dp"
-            android:layout_height="57dp"
-            android:text="두려움"
-            android:textSize="20sp"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center"
-            android:onClick="ClickButton2"
-            android:background="@drawable/button_patter"> </Button>
+            <RadioButton
+                android:layout_weight="1"
+                android:text=" 기쁨"
+                android:id="@+id/rg_btn1"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/angry"
-            android:layout_width="182dp"
-            android:layout_height="57dp"
-            android:text="분노"
-            android:textSize="20sp"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center"
-            android:onClick="ClickButton2"
-            android:background="@drawable/button_patter"> </Button>
+            <RadioButton
+                android:layout_weight="1"
+                android:text=" 두려움"
+                android:id="@+id/rg_btn2"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/disgust"
-            android:layout_width="182dp"
-            android:layout_height="57dp"
-            android:text="불쾌"
-            android:textSize="20sp"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center"
-            android:onClick="ClickButton2"
-            android:background="@drawable/button_patter"> </Button>
+            <RadioButton
+                android:layout_weight="1"
+                android:text=" 분노"
+                android:id="@+id/rg_btn3"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/sad"
-            android:layout_width="182dp"
-            android:layout_height="57dp"
-            android:text="슬픔"
-            android:textSize="20sp"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="center"
-            android:onClick="ClickButton2"
-            android:background="@drawable/button_patter"> </Button>
+            <RadioButton
+                android:layout_weight="1"
+                android:text=" 불쾌"
+                android:id="@+id/rg_btn4"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:layout_weight="1"
+                android:text=" 슬픔"
+                android:id="@+id/rg_btn5"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/ll_progress_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="30dp"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:max="5"
+                android:minHeight="50dp"
+                android:progress="0"
+                android:indeterminate="false" />
+
+            <TextView
+                android:id="@+id/tv_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="15dp"
+                android:textColorHint="#656F77"
+                android:textSize="14sp"
+                tools:text="0/5" />
+            <!--style은 수직 진행률 표시-->
+            <!--developer android com = progressbar에 코드있음을 보임(determinateprogress웹내검색)-->
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
