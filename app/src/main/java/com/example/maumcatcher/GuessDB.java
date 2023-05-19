@@ -26,12 +26,12 @@ public class GuessDB extends SQLiteOpenHelper {
 
     public GuessDB(Context context){
         super(context, DB_NAME, null, DB_VERSION);
-        DB_PATH = "/data/data/com.example.maumcatcher/databases/" + context.getPackageName() + "varietyEmotion.db";
+        DB_PATH = "/data/data/" + context.getPackageName() + "varietyEmotion.db";
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        dbase = db;
+        this.dbase = db;
 
     }
 

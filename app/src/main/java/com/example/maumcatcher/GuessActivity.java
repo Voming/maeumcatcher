@@ -16,7 +16,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class GuessActivity extends AppCompatActivity {
 
     //put question id into list
     List<GuessQuestion> questionList;
-    int quid = 0;
+    int quid = 1;
     GuessQuestion currentQuestion;
     TextView txtQuestion;
     RadioButton btn1, btn2, btn3, btn4, btn5;
@@ -32,16 +31,13 @@ public class GuessActivity extends AppCompatActivity {
     public static String result="highscore";
     static  int score = 0;
     TextView scoreno;
+    TextView quesno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guessname);
-        ProgressBar progressbar = (ProgressBar) findViewById(R.id.progressBar);
 
-        progressbar.setProgress(quid);
-        scoreno=(TextView)findViewById(R.id.tv_progress);
-        progressbar.setIndeterminate(false);
         //get all question from db
         GuessDB dbHelper = new GuessDB(this);
         questionList = dbHelper.getAllQuestions();
@@ -49,6 +45,7 @@ public class GuessActivity extends AppCompatActivity {
         //random question
         Collections.shuffle(questionList);
         currentQuestion = questionList.get(quid);
+
 
         txtQuestion = (TextView)findViewById(R.id.exampletxt);
         btn1 = (RadioButton)findViewById(R.id.rg_btn1);
@@ -63,20 +60,31 @@ public class GuessActivity extends AppCompatActivity {
 
     private void setQuestionView(){
         txtQuestion.setText(currentQuestion.getQuestion());
+        ProgressBar progressbar = (ProgressBar) findViewById(R.id.progressBar);
+        progressbar.setProgress(quid);
+        progressbar.setIndeterminate(false);
+        //Log.d("문제번호", String.valueOf(quid));
+
+        quesno=(TextView)findViewById(R.id.tv_progress);
+        String text = quid + " / 5";
+        quesno.setText(text);
+
         quid++;
     }
 
     public void NextButton(View view){
+        Log.d(currentQuestion.getAnswer(), "정답");
         RadioGroup grp = (RadioGroup)findViewById(R.id.radioGroup);
         RadioButton check = (RadioButton)findViewById(grp.getCheckedRadioButtonId());
-        if(currentQuestion.getAnswer().equals(check.getText())){
-            // 답 맞췄을 때?
+
+        String selectedAnswer = check.getText().toString();
+        if(currentQuestion.getAnswer().equals(selectedAnswer)){
+            // 답 맞췄을 때
             score++;
             Log.d("Score", "Your score: "+score);
             scoreno.setText(" "+score);
         }
-        if(quid<5){
-            // 5개 문제 이하?
+        if(quid<6){
             currentQuestion = questionList.get(quid);
             setQuestionView();
         }else{
@@ -89,6 +97,29 @@ public class GuessActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+
+        /*
+        if(currentQuestion.getAnswer().equals(check.getText())){
+            // 답 맞췄을 때
+            score++;
+            Log.d("Score", "Your score: "+score);
+            scoreno.setText(" "+score);
+        }
+        if(quid<6){
+            currentQuestion = questionList.get(quid);
+            setQuestionView();
+        }else{
+            final SharedPreferences sharedPreferences = getSharedPreferences("Result", Context.MODE_PRIVATE);
+            final SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt(result,score);
+            editor.commit();
+
+            Intent intent = new Intent(GuessActivity.this, GuessResult.class);
+            startActivity(intent);
+            finish();
+        }
+        */
     }
 
     public void highscore(View v){
@@ -98,14 +129,6 @@ public class GuessActivity extends AppCompatActivity {
     }
 
     /*
-    XML 메뉴
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu., menu);
-        return true;
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -119,7 +142,6 @@ public class GuessActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     */
-
     //리스트에 선택된 답 담아서 id ++ 해야 하나?
 
 }

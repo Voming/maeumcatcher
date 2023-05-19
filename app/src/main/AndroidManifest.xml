@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-feature
         android:name="android.hardware.Camera"
         android:required="true"/>
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_CHECKIN_PROPERTIES"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 
 
     <application
@@ -16,9 +29,13 @@
         android:theme="@style/Theme.MaumCatcher"
         tools:targetApi="31">
         <activity
+            android:name=".GuessActivity"
+            android:exported="false" />
+        <activity
             android:name=".FollowFacesActivity"
             android:exported="false" />
-        <activity android:name=".CheckEmotionActivity"
+        <activity
+            android:name=".CheckEmotionActivity"
             android:exported="false" />
         <activity
             android:name=".EmotionSubActivity"
@@ -44,6 +61,11 @@
             android:exported="false"/>
         <activity android:name=".VariousEmotionFear"
             android:exported="false"/>
+
+        <activity
+            android:name=".AnalyzeEmotionActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
