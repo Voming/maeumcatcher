@@ -55,6 +55,8 @@
             android:exported="false"/>
         <activity android:name=".GuessActivity"
             android:exported="false"/>
+        <activity android:name=".EmotionGalleryActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

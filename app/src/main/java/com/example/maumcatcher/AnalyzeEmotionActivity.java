@@ -110,6 +110,7 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
                 System.out.println("원래 감정" + emotion);
                 System.out.println("분석한 감정" + value);
                 System.out.println("레벨" + setLv);
+                //실행시 주석 풀기
                 System.out.println("숫자 변환" +   Float.parseFloat(confidence));
                 result = (int) Math.floor(Float.parseFloat(confidence) * 100);
 
@@ -141,7 +142,7 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
                             confidence_view.setText("같은 표정이 아닙니다.");
                             String feedback = "따라한 표정은 " + value_kr + "입니다.";
                             save_txt.setText(feedback);
-                            save.setVisibility(View.GONE);
+                            save.setVisibility(View.GONE); //주석풀기
                         }else if(Objects.equals(setLv, "level1")){
                             confidence_view.setText("정확도" + result +"%");
                             level.setImageResource(R.drawable.level1);

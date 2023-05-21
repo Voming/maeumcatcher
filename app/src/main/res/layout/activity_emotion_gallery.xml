@@ -18,72 +18,89 @@
         android:layout_marginLeft="15dp"
         android:textStyle="bold" />
 
-    <ScrollView
+    <HorizontalScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/angry"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="화난 표정"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:backgroundTint="@color/darkbrown"
+                android:textStyle="bold"/>
             <Button
                 android:id="@+id/disgust"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="싫은 표정"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:backgroundTint="@color/darkbrown"
+                android:textStyle="bold"/>
+
             <Button
                 android:id="@+id/fear"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:text="두려운 표정"
-                android:layout_marginLeft="5dp"/>
+                android:backgroundTint="@color/darkbrown"
+                android:textStyle="bold"/>
+
             <Button
                 android:id="@+id/happy"
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:text="행복한 표정"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:backgroundTint="@color/darkbrown"
+                android:textStyle="bold"/>
             <Button
                 android:id="@+id/neutral"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:text="무표정"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:backgroundTint="@color/darkbrown"
+                android:textStyle="bold"/>
             <Button
                 android:id="@+id/sad"
-                android:layout_width="80dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="슬픈 표정"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:backgroundTint="@color/darkbrown"
+                android:textStyle="bold"/>
             <Button
                 android:id="@+id/surprise"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="놀란 표정"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:backgroundTint="@color/darkbrown"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 
-    </ScrollView>
+    </HorizontalScrollView>
 
     <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <GridView
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:id="@+id/gridView"
-            android:gravity="center"
-            android:scaleType = "centerCrop"
-            android:numColumns="3"
-            />
+            android:layout_height="wrap_content"
+            android:id="@+id/list"
+            android:orientation="vertical"/>
 
     </ScrollView>
 
