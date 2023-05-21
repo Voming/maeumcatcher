@@ -26,15 +26,62 @@ public class FindSameEmotionActivity extends AppCompatActivity {
     int[] surprise = {R.drawable.surprise_1, R.drawable.surprise_2, R.drawable.surprise_3, R.drawable.surprise_4, R.drawable.surprise_5,
             R.drawable.surprise_6, R.drawable.surprise_7};
 
-
+    String findEm;
+    String notEm1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emotion_gallery);
+        setContentView(R.layout.activity_find_same_emotion);
 
         Random ram = new Random();
         int rand1 = ram.nextInt(7);
-        int rand2 = ram.nextInt(7);
+        if(rand1 == 0){
+            findEm = "angry";
+            int rand2 = ram.nextInt(6);
+            if(rand2 == 0){
+                notEm1 = "disgust";
+                int rand3 = ram.nextInt(5);
+                if(rand1 == 0){
+                    findEm = "angry";
+                }else if(rand1 == 0){
+                    findEm = "disgust";
+                }else if(rand1 == 0){
+                    findEm = "fear";
+                }else if(rand1 == 0){
+                    findEm = "happy";
+                }else if(rand1 == 0){
+                    findEm = "neutral";
+                }else if(rand1 == 0){
+                    findEm = "sad";
+                }else if(rand1 == 0){
+                    findEm = "surprise";
+                }
+            }else if(rand2 == 1){
+                notEm1 = "fear";
+            }else if(rand2 == 2){
+                notEm1 = "happy";
+            }else if(rand2 == 3){
+                notEm1 = "neutral";
+            }else if(rand2 == 4){
+                notEm1 = "sad";
+            }else if(rand2 == 5){
+                notEm1 = "surprise";
+            }
+        }else if(rand1 == 1){
+            findEm = "disgust";
+        }else if(rand1 == 2){
+            findEm = "fear";
+        }else if(rand1 == 3){
+            findEm = "happy";
+        }else if(rand1 == 4){
+            findEm = "neutral";
+        }else if(rand1 == 5){
+            findEm = "sad";
+        }else if(rand1 == 6){
+            findEm = "surprise";
+        }
+        int rand2 = ram.nextInt(6);
+        int rand3 = ram.nextInt(7);
         boolean play = false;
 
         if(rand1 != rand2){
