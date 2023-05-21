@@ -43,9 +43,6 @@ public class CheckEmotionActivity extends AppCompatActivity {
         bitmap = intent.getParcelableExtra("사진");
         emotion = intent.getStringExtra("감정");
 
-        if(Objects.equals(emotion, "laugh") || Objects.equals(emotion, "smile")){
-            emotion = "happy";
-        }
 
         System.out.print(emotion);
 

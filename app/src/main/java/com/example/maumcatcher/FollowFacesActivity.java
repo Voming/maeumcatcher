@@ -26,15 +26,19 @@ public class FollowFacesActivity extends AppCompatActivity {
 
 
     static final int REQUEST_IMAGE_CODE = 101;
-    int[] img = {R.drawable.angry_1, R.drawable.angry_2, R.drawable.angry_3, R.drawable.angry_4, R.drawable.disgust_1,
-            R.drawable.disgust_2, R.drawable.disgust_3, R.drawable.disgust_4, R.drawable.disgust_5, R.drawable.disgust_6,
-            R.drawable.disgust_7, R.drawable.fear_1, R.drawable.fear_2, R.drawable.fear_3, R.drawable.fear_4,
-            R.drawable.happy_1, R.drawable.happy_2, R.drawable.happy_3, R.drawable.happy_4, R.drawable.happy_5,
-            R.drawable.happy_6, R.drawable.happy_7, R.drawable.happy_8, R.drawable.neutral_1, R.drawable.neutral_2,
-            R.drawable.neutral_3, R.drawable.neutral_4, R.drawable.neutral_5, R.drawable.sad_1, R.drawable.sad_2,
-            R.drawable.sad_3, R.drawable.sad_4, R.drawable.sad_5, R.drawable.sad_6, R.drawable.surprise_1,
-            R.drawable.surprise_2, R.drawable.surprise_3, R.drawable.surprise_4, R.drawable.surprise_5, R.drawable.surprise_6,
-            R.drawable.surprise_7
+    int[] img = {R.drawable.angry_1, R.drawable.angry_2, R.drawable.angry_3, R.drawable.angry_4, R.drawable.angry_5,
+            R.drawable.angry_6, R.drawable.disgust_1, R.drawable.disgust_2, R.drawable.disgust_3, R.drawable.disgust_4,
+            R.drawable.disgust_5, R.drawable.disgust_6, R.drawable.disgust_7, R.drawable.disgust_8, R.drawable.disgust_9,
+            R.drawable.fear_1, R.drawable.fear_2, R.drawable.fear_3, R.drawable.fear_4, R.drawable.happy_1,
+            R.drawable.happy_2, R.drawable.happy_3, R.drawable.happy_4, R.drawable.happy_5, R.drawable.happy_6,
+            R.drawable.happy_7, R.drawable.happy_8, R.drawable.happy_9, R.drawable.happy_10, R.drawable.happy_11,
+            R.drawable.happy_12, R.drawable.happy_13, R.drawable.happy_14, R.drawable.happy_15, R.drawable.neutral_1,
+            R.drawable.neutral_2, R.drawable.neutral_3, R.drawable.neutral_4, R.drawable.neutral_5, R.drawable.neutral_6,
+            R.drawable.neutral_7, R.drawable.neutral_8, R.drawable.neutral_9, R.drawable.neutral_10, R.drawable.sad_1,
+            R.drawable.sad_2, R.drawable.sad_3, R.drawable.sad_4, R.drawable.sad_5, R.drawable.sad_6,
+            R.drawable.sad_7, R.drawable.sad_8, R.drawable.sad_9, R.drawable.surprise_1, R.drawable.surprise_2,
+            R.drawable.surprise_3, R.drawable.surprise_4, R.drawable.surprise_5, R.drawable.surprise_6, R.drawable.surprise_7,
+            R.drawable.surprise_8, R.drawable.surprise_9, R.drawable.surprise_10
     };
     int num;
 
@@ -65,29 +69,28 @@ public class FollowFacesActivity extends AppCompatActivity {
 
 
 
-        if(num<=3){
+        if(num<=5){
             emotion = "angry";
         }
-        else if(num<=10){
+        else if(num<=14){
             emotion = "disgust";
         }
-        else if(num<=14){
+        else if(num<=18){
             emotion = "fear";
         }
-        else if(num<=22){
+        else if(num<=33){
             emotion = "happy";
         }
-        else if(num<=27){
+        else if(num<=43){
             emotion = "neutral";
         }
-        else if(num<=33){
+        else if(num<=52){
             emotion = "sad";
         }
         else{
             emotion = "surprise";
         }
 
-        Log.v("em", emotion);
 
 
         camera.setOnClickListener(new View.OnClickListener() {

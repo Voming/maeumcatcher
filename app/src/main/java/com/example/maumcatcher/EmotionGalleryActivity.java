@@ -2,6 +2,7 @@ package com.example.maumcatcher;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,7 +101,7 @@ public class EmotionGalleryActivity extends AppCompatActivity {
 
         List<Bitmap> myBitmap = new ArrayList<>();
         for (int i=0; i< files.length; i++) {
-            //myBitmap = BitmapFactory.decodeFile(directory.getAbsolutePath());
+          //  myBitmap = BitmapFactory.decodeFile(directory.getAbsolutePath());
             filesNameList.add(path + "/" + files[i].getName());
         }
 
