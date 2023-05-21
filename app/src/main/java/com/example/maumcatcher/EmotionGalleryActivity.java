@@ -39,7 +39,7 @@ public class EmotionGalleryActivity extends AppCompatActivity {
 
         gv.setAdapter(gAdapter);
 
-        //화면 전환 버튼
+        //디렉토리 전환 버튼
         angry = (Button)findViewById(R.id.angry);
         disgust=(Button)findViewById(R.id.disgust);
         fear=(Button)findViewById(R.id.fear);

@@ -1,6 +1,6 @@
 package com.example.maumcatcher;
 
-import static java.lang.Integer.parseInt;
+
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -37,8 +37,6 @@ import java.util.stream.IntStream;
 
 
 public class AnalyzeEmotionActivity extends AppCompatActivity {
-
-
     ImageView level;
     TextView confidence_view;
     Button exit;
@@ -55,6 +53,9 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
     String emotion;
 
     String setLv;
+    String value_kr;
+    int result;
+
 
 
     @Override
@@ -78,54 +79,100 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
 
         SaveBitmapToFileCache(bitmap, "data/data/com.example.maumcatcher/test.jpg");
 
-        new Thread(() -> {
-            apiStart(); // network 동작, 인터넷에서 xml을 받아오는 코드
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-            //api 감정 재분류
-            if(Objects.equals(value, "laugh") || Objects.equals(value, "smile")){
-                value = "happy";
-            }
+                apiStart(); // network 동작, 인터넷에서 xml을 받아오는 코드
 
-            System.out.println("원래 감정" + emotion);
-            System.out.println("분석한 감정" + value);
-
-            if(Objects.equals(value, emotion)){
-                if( Float.parseFloat(confidence) <=  40.0){
-                    setLv = "level1";
-                }else  if( Float.parseFloat(confidence) <=  60.0){
-                    setLv = "level2";
-                }else  if( Float.parseFloat(confidence) <=  70.0){
-                    setLv = "level3";
-                }else  if( Float.parseFloat(confidence) <=  80.0){
-                    setLv = "level4";
-                }else  if( Float.parseFloat(confidence) <=  90.0){
-                    setLv = "level5";
+                //api 감정 재분류
+                if(Objects.equals(value, "laugh") || Objects.equals(value, "smile")){
+                    value = "happy";
                 }
-            }
-            else{
-                setLv = "level0";
+
+                if(Objects.equals(value, emotion)){
+                    if( Float.parseFloat(confidence) >=  0.90){
+                        setLv = "level5";
+                    }else  if( Float.parseFloat(confidence) >=  0.80){
+                        setLv = "level4";
+                    }else  if( Float.parseFloat(confidence) >=  0.70){
+                        setLv = "level3";
+                    }else  if( Float.parseFloat(confidence) >=  0.60){
+                        setLv = "level2";
+                    }else  if( Float.parseFloat(confidence) >=  0.40){
+                        setLv = "level1";
+                    }
+                }
+                else{
+                    setLv = "level0";
+                }
+
+                System.out.println("원래 감정" + emotion);
+                System.out.println("분석한 감정" + value);
+                System.out.println("레벨" + setLv);
+                System.out.println("숫자 변환" +   Float.parseFloat(confidence));
+                result = (int) Math.floor(Float.parseFloat(confidence) * 100);
+
+                runOnUiThread(new Runnable(){
+                    @Override
+                    public void run() {
+                        if (Objects.equals(value, "angry")) {
+                            value_kr = "화난 표정";
+                        } else if (Objects.equals(value, "disgust")) {
+                            value_kr = "싫은 표정";
+                        } else if (Objects.equals(value, "fear")) {
+                            value_kr = "두려운 표정";
+                        } else if (Objects.equals(value, "happy")) {
+                            value_kr = "행복한 표정";
+                        } else if (Objects.equals(value, "neutral")) {
+                            value_kr = "무표정";
+                        } else if (Objects.equals(value, "sad")) {
+                            value_kr = "슬픈 표정";
+                        } else if (Objects.equals(value, "surprise")) {
+                            value_kr = "놀란 표정";
+                        } else if (Objects.equals(value, "talking")) {
+                            value_kr = "말하는 표정";
+                        }
+
+
+                        // Thread 안에서 바로 UI작업을 한다.
+                        if(Objects.equals(setLv, "level0")){
+                            level.setImageResource(R.drawable.level0);
+                            confidence_view.setText("같은 표정이 아닙니다.");
+                            String feedback = "따라한 표정은 " + value_kr + "입니다.";
+                            save_txt.setText(feedback);
+                            save.setVisibility(View.GONE);
+                        }else if(Objects.equals(setLv, "level1")){
+                            confidence_view.setText("정확도" + result +"%");
+                            level.setImageResource(R.drawable.level1);
+                        }else if(Objects.equals(setLv, "level2")){
+                            confidence_view.setText("정확도" + result +"%");
+                            level.setImageResource(R.drawable.level2);
+                        }else if(Objects.equals(setLv, "level3")){
+                            confidence_view.setText("정확도" + result +"%");
+                            level.setImageResource(R.drawable.level3);
+                        }else if(Objects.equals(setLv, "level4")){
+                            confidence_view.setText("정확도" + result +"%");
+                            level.setImageResource(R.drawable.level4);
+                        }else if(setLv =="level5"){
+                            confidence_view.setText("정확도" + result +"%");
+                            level.setImageResource(R.drawable.level5);
+                        }
+                    }
+                });
             }
         }).start();
 
-        System.out.println("원래 감정" + emotion);
-        System.out.println("분석한 감정" + value);
-        System.out.println("분석한 감정" + setLv);
+        /*new Thread(() -> {
 
-        if(setLv =="level0"){
-            level.setImageResource(R.drawable.level0);
-            confidence_view.setText("같은 표정이 아닙니다.");
-            save_txt.setVisibility(View.GONE);
-        }else if(setLv =="level1"){
-            level.setImageResource(R.drawable.level1);
-        }else if(setLv =="level2"){
-            level.setImageResource(R.drawable.level2);
-        }else if(setLv =="level3"){
-            level.setImageResource(R.drawable.level3);
-        }else if(setLv =="level4"){
-            level.setImageResource(R.drawable.level4);
-        }else if(setLv =="level5"){
-            level.setImageResource(R.drawable.level5);
-        }
+
+        }).start();*/
+
+       /* System.out.println("원래 감정" + emotion);
+        System.out.println("분석한 감정" + value);
+        System.out.println("분석한 감정" + setLv);*/
+
+
 
 
 
@@ -225,6 +272,7 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
             }
         }
     }
+
 
     //api 사용
     public  void apiStart(){
