@@ -90,15 +90,15 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
             System.out.println("분석한 감정" + value);
 
             if(Objects.equals(value, emotion)){
-                if(parseInt(confidence) <=  40.0){
+                if( Float.parseFloat(confidence) <=  40.0){
                     setLv = "level1";
-                }else  if(parseInt(confidence) <=  60.0){
+                }else  if( Float.parseFloat(confidence) <=  60.0){
                     setLv = "level2";
-                }else  if(parseInt(confidence) <=  70.0){
+                }else  if( Float.parseFloat(confidence) <=  70.0){
                     setLv = "level3";
-                }else  if(parseInt(confidence) <=  80.0){
+                }else  if( Float.parseFloat(confidence) <=  80.0){
                     setLv = "level4";
-                }else  if(parseInt(confidence) <=  90.0){
+                }else  if( Float.parseFloat(confidence) <=  90.0){
                     setLv = "level5";
                 }
             }
@@ -109,6 +109,7 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
 
         System.out.println("원래 감정" + emotion);
         System.out.println("분석한 감정" + value);
+        System.out.println("분석한 감정" + setLv);
 
         if(setLv =="level0"){
             level.setImageResource(R.drawable.level0);
