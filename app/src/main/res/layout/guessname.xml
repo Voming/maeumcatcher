@@ -72,7 +72,7 @@
 
             <RadioButton
                 android:layout_weight="1"
-                android:text=" 기쁨"
+                android:text="기쁨"
                 android:id="@+id/rg_btn1"
                 android:textSize="20sp"
                 android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
 
             <RadioButton
                 android:layout_weight="1"
-                android:text=" 두려움"
+                android:text="두려움"
                 android:id="@+id/rg_btn2"
                 android:textSize="20sp"
                 android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
 
             <RadioButton
                 android:layout_weight="1"
-                android:text=" 분노"
+                android:text="분노"
                 android:id="@+id/rg_btn3"
                 android:textSize="20sp"
                 android:layout_width="wrap_content"
@@ -96,7 +96,7 @@
 
             <RadioButton
                 android:layout_weight="1"
-                android:text=" 불쾌"
+                android:text="불쾌"
                 android:id="@+id/rg_btn4"
                 android:textSize="20sp"
                 android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
 
             <RadioButton
                 android:layout_weight="1"
-                android:text=" 슬픔"
+                android:text="슬픔"
                 android:id="@+id/rg_btn5"
                 android:textSize="20sp"
                 android:layout_width="wrap_content"
