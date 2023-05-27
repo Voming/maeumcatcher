@@ -13,12 +13,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 public class GuessActivity extends AppCompatActivity {
 
@@ -34,7 +33,9 @@ public class GuessActivity extends AppCompatActivity {
     TextView quesno;
 
     // AnswerList
-    ArrayList<String> answerList = new ArrayList<String>();
+    public ArrayList<String> EXanswerList = new ArrayList<String>();
+    public ArrayList<String> EXselectedAnswer = new ArrayList<String>();
+    public ArrayList<String> EXactualAnswer = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,15 +81,18 @@ public class GuessActivity extends AppCompatActivity {
         RadioButton check = (RadioButton)findViewById(grp.getCheckedRadioButtonId());
 
         String selectedAnswer = check.getText().toString();
-        Log.d(selectedAnswer, "선택");
         if(currentQuestion.getAnswer().equals(selectedAnswer)){
             // 답 맞췄을 때
             score++;
             Log.d("Score", "Your score: "+score);
         }else{
             // 답 틀렸을 때
-            answerList.add(currentQuestion.getQuestion());
-            Log.d("틀린문제: ", answerList.toString());
+            EXanswerList.add(currentQuestion.getQuestion());
+            Log.d("틀린문제: ", EXanswerList.toString());
+            EXselectedAnswer.add(selectedAnswer);
+
+            Log.d(selectedAnswer, "선택");
+            EXactualAnswer.add(currentQuestion.getAnswer());
         }
 
         if(quid<6){
@@ -104,31 +108,24 @@ public class GuessActivity extends AppCompatActivity {
             // 최종 커밋, 저장
             editor.commit();
 
-            // answerList(arraylist) sharedPreferences 저장
-            SaveAnswerData(answerList);
-
             Intent intent = new Intent(GuessActivity.this, GuessResult.class);
+            intent.putStringArrayListExtra("answerList", EXanswerList);
+            intent.putStringArrayListExtra("selectedAnswer", EXselectedAnswer);
+            intent.putStringArrayListExtra("actualAnswer", EXactualAnswer);
             startActivity(intent);
             finish();
         }
     }
 
-    private void SaveAnswerData(ArrayList<String> answerList) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = preferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(answerList);
-        editor.putString("AnswerList", json);
-        editor.commit();
+    /*
+    public void showResult(){
+        Intent intent = new Intent(GuessActivity.this, GuessResult.class);
+        intent.putStringArrayListExtra("answerList", answerList);
+        intent.putStringArrayListExtra("selectedAnswers", selectedAnswers);
+        intent.putStringArrayListExtra("actualAnswers", actualAnswers);
+        startActivity(intent);
+        finish();
     }
-
-    private ArrayList<String> ReadAnswerData() {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Gson gson = new Gson();
-        String json = sharedPrefs.getString("AnswerList", "EMPTY");
-        Type type = new TypeToken<ArrayList<String>>() {}.getType();
-        ArrayList<String> arrayList = gson.fromJson(json, type);
-        return arrayList;
-    }
+    */
 
 }

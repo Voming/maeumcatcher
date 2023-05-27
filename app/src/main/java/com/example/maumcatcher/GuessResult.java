@@ -6,14 +6,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import org.w3c.dom.Text;
+import java.util.ArrayList;
 
 public class GuessResult extends AppCompatActivity {
+
+    public ArrayList<String> AnswerList = new ArrayList<String>();
+    public ArrayList<String> SelectedAnswer = new ArrayList<String>();
+    public ArrayList<String> ActualAnswer = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,11 @@ public class GuessResult extends AppCompatActivity {
             expTxtView.setText("축하합니다!");
         }
 
+        // 오답체크
+        AnswerList = getIntent().getStringArrayListExtra("answerList");
+        SelectedAnswer = getIntent().getStringArrayListExtra("selectedAnswer");
+        ActualAnswer = getIntent().getStringArrayListExtra("actualAnswer");
+
     }
 
     @Override
@@ -79,7 +89,11 @@ public class GuessResult extends AppCompatActivity {
 
     // 오답노트
     public void checkAnswer(View view){
-        Intent intent = new Intent(getApplicationContext(), GuessCheck.class);
+        Intent intent = new Intent(GuessResult.this, GuessCheck.class);
+        intent.putStringArrayListExtra("answerList", AnswerList);
+        intent.putStringArrayListExtra("selectedAnswer", SelectedAnswer);
+        intent.putStringArrayListExtra("actualAnswer", ActualAnswer);
         startActivity(intent);
+        //finish();
     }
 }
