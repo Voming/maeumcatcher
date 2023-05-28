@@ -61,9 +61,17 @@
             android:exported="false"/>
         <activity android:name=".VariousEmotionFear"
             android:exported="false"/>
-
         <activity
             android:name=".AnalyzeEmotionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FindSameResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EmotionGalleryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FindSameEmotionActivity"
             android:exported="false" />
 
     </application>
