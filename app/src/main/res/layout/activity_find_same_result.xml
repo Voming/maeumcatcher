@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    tools:context=".AnalyzeEmotionActivity">
+    tools:context=".FindSameResultActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -45,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:gravity="center"
-            android:text="정확도 95%"
+            android:text="몇 개를 맞췄어요!"
             android:textColor="@color/darkbrown"
             android:textSize="30dp"
             android:textStyle="bold" />
@@ -56,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="표정 갤러리에 저장하세요!"
+            android:text="축하합니다"
             android:textColor="@color/darkbrown"
             android:textSize="20dp" />
 
@@ -88,26 +86,17 @@
 
         </LinearLayout>
 
-
         <Button
-            android:id="@+id/save"
+            android:id="@+id/note"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:backgroundTint="@color/darkbrown"
+            android:backgroundTint="@color/pink"
+            android:textColor="@color/darkbrown"
             android:textStyle="bold"
-            android:text="저장하기" />
+            android:text="오답노트" />
 
-        <Button
-            android:id="@+id/gallery"
-            android:layout_width="280dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/darkbrown"
-            android:textStyle="bold"
-            android:text="표정 갤러리" />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

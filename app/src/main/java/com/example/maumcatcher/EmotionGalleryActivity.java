@@ -140,7 +140,7 @@ public class EmotionGalleryActivity extends AppCompatActivity {
         File[] files = directory.listFiles();
 
 
-        if(files.length < 1){
+        if(files == null){
             Toast.makeText(getApplicationContext(), "표정 따라하기를 통해\n" +
                     "갤러리에 이미지를 추가해주세요!", Toast.LENGTH_LONG).show();
         }else{

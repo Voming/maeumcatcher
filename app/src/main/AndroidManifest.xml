@@ -23,6 +23,9 @@
         android:theme="@style/Theme.MaumCatcher"
         tools:targetApi="31">
         <activity
+            android:name=".FindSameResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".FollowFacesActivity"
             android:exported="false" />
         <activity
@@ -37,28 +40,39 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PlaySubActivity"
-            android:exported="false"/>
-        <activity android:name=".VariousEmotion"
-            android:exported="false"/>
-        <activity android:name=".VariousEmotionAngry"
-            android:exported="false"/>
-        <activity android:name=".CheckEmotionActivity"
-            android:exported="false"/>
-        <activity android:name=".AnalyzeEmotionActivity"
-            android:exported="false"/>
-        <activity android:name=".VariousEmotionDisgust"
-            android:exported="false"/>
-        <activity android:name=".VariousEmotionSad"
-            android:exported="false"/>
-        <activity android:name=".VariousEmotionFear"
-            android:exported="false"/>
-        <activity android:name=".GuessActivity"
-            android:exported="false"/>
-        <activity android:name=".EmotionGalleryActivity"
-            android:exported="false"/>
-        <activity android:name=".FindSameEmotionActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".PlaySubActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VariousEmotion"
+            android:exported="false" />
+        <activity
+            android:name=".VariousEmotionAngry"
+            android:exported="false" />
+        <activity
+            android:name=".CheckEmotionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AnalyzeEmotionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VariousEmotionDisgust"
+            android:exported="false" />
+        <activity
+            android:name=".VariousEmotionSad"
+            android:exported="false" />
+        <activity
+            android:name=".VariousEmotionFear"
+            android:exported="false" />
+        <activity
+            android:name=".GuessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EmotionGalleryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FindSameEmotionActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
