@@ -4,18 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import java.io.Serializable;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -30,8 +30,12 @@ public class GuessActivity extends AppCompatActivity {
     ImageButton butNext;
     public static String result="highscore";
     static  int score = 0;
-    TextView scoreno;
     TextView quesno;
+
+    // AnswerList
+    public ArrayList<String> EXanswerList = new ArrayList<String>();
+    public ArrayList<String> EXselectedAnswer = new ArrayList<String>();
+    public ArrayList<String> EXactualAnswer = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +49,6 @@ public class GuessActivity extends AppCompatActivity {
         //random question
         Collections.shuffle(questionList);
         currentQuestion = questionList.get(quid);
-
 
         txtQuestion = (TextView)findViewById(R.id.exampletxt);
         btn1 = (RadioButton)findViewById(R.id.rg_btn1);
@@ -82,66 +85,47 @@ public class GuessActivity extends AppCompatActivity {
             // 답 맞췄을 때
             score++;
             Log.d("Score", "Your score: "+score);
-            scoreno.setText(" "+score);
+        }else{
+            // 답 틀렸을 때
+            EXanswerList.add(currentQuestion.getQuestion());
+            Log.d("틀린문제: ", EXanswerList.toString());
+            EXselectedAnswer.add(selectedAnswer);
+
+            Log.d(selectedAnswer, "선택");
+            EXactualAnswer.add(currentQuestion.getAnswer());
         }
+
         if(quid<6){
             currentQuestion = questionList.get(quid);
             setQuestionView();
         }else{
+            // Result 라는 이름의 기본모드 설정
             final SharedPreferences sharedPreferences = getSharedPreferences("Result", Context.MODE_PRIVATE);
+            // sharedPreferences를 제어할 editor 선언
             final SharedPreferences.Editor editor = sharedPreferences.edit();
+            // result, score int 형식으로 저장
             editor.putInt(result,score);
+            // 최종 커밋, 저장
             editor.commit();
 
             Intent intent = new Intent(GuessActivity.this, GuessResult.class);
+            intent.putStringArrayListExtra("answerList", EXanswerList);
+            intent.putStringArrayListExtra("selectedAnswer", EXselectedAnswer);
+            intent.putStringArrayListExtra("actualAnswer", EXactualAnswer);
             startActivity(intent);
             finish();
         }
-
-
-        /*
-        if(currentQuestion.getAnswer().equals(check.getText())){
-            // 답 맞췄을 때
-            score++;
-            Log.d("Score", "Your score: "+score);
-            scoreno.setText(" "+score);
-        }
-        if(quid<6){
-            currentQuestion = questionList.get(quid);
-            setQuestionView();
-        }else{
-            final SharedPreferences sharedPreferences = getSharedPreferences("Result", Context.MODE_PRIVATE);
-            final SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt(result,score);
-            editor.commit();
-
-            Intent intent = new Intent(GuessActivity.this, GuessResult.class);
-            startActivity(intent);
-            finish();
-        }
-        */
-    }
-
-    public void highscore(View v){
-        Intent intent = new Intent(GuessActivity.this, GuessResult.class);
-        startActivity(intent);
-        finish();
     }
 
     /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public void showResult(){
+        Intent intent = new Intent(GuessActivity.this, GuessResult.class);
+        intent.putStringArrayListExtra("answerList", answerList);
+        intent.putStringArrayListExtra("selectedAnswers", selectedAnswers);
+        intent.putStringArrayListExtra("actualAnswers", actualAnswers);
+        startActivity(intent);
+        finish();
     }
     */
-    //리스트에 선택된 답 담아서 id ++ 해야 하나?
 
 }
