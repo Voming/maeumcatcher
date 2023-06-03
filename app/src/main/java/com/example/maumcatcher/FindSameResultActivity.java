@@ -71,6 +71,7 @@ public class FindSameResultActivity extends AppCompatActivity {
             level.setImageResource(R.drawable.level5);
             confidence.setText("5개를 맞췄어요");
             extxt.setText("축하해요!");
+            note.setVisibility(View.GONE);
         }
 
 
