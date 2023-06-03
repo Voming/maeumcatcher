@@ -82,6 +82,7 @@ public class FindSameEmotionActivity extends AppCompatActivity {
     ImageButton img2;
     ImageButton img3;
     ImageButton img4;
+    TextView qNum;
 
     boolean ck0 = false;
     boolean ck1 = false;
@@ -89,7 +90,7 @@ public class FindSameEmotionActivity extends AppCompatActivity {
     boolean ck3 = false;
 
     int[] numArray = new int[5];
-    int[][] incorrect = new int[5][4]; //오답노트 배열 저장
+    int[] incorrect = new int[5]; //오답노트 문제 번호 저장
 
     int ckCount = 0; //선택한 개수
     int correct = 0;  //맞은 개수
@@ -105,6 +106,7 @@ public class FindSameEmotionActivity extends AppCompatActivity {
         img2 = findViewById(R.id.img2);
         img3 = findViewById(R.id.img3);
         img4 = findViewById(R.id.img4);
+        qNum = findViewById(R.id.qNum);
 
         Random random = new Random();
         //문제 랜덤으로 출력
@@ -118,6 +120,7 @@ public class FindSameEmotionActivity extends AppCompatActivity {
         }
 
         /*//질문 리스트의 랜덤번째 문제 가져옴
+
         rand(question[numArray[questionNum]], 4);*/
 
         img1.setBackgroundResource(question[numArray[questionNum]][0]);
@@ -173,144 +176,126 @@ public class FindSameEmotionActivity extends AppCompatActivity {
 
                 //정답 확인
                 if(ckCount ==2){
+                    String real = String.valueOf(questionNum+2);
+                    qNum.setText(real+ "/5");
                     if(numArray[questionNum] == 0){
                         if(ck0 && ck1) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 1){
                         if(ck0 && ck1) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 2){
                         if(ck1 && ck2) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 3){
                         if(ck2 && ck3) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 4){
                         if(ck0 && ck3) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 5){
                         if(ck0 && ck2) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 6){
                         if(ck0 && ck1) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 7){
                         if(ck2 && ck3) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 8){
                         if(ck1 && ck2) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 9){
                         if(ck0 && ck1) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 10){
                         if(ck0 && ck3) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 11){
                         if(ck2 && ck3) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 12){
                         if(ck0 && ck3) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 13){
                         if(ck0 && ck2) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 14){
                         if(ck0 && ck1) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 15){
                         if(ck2 && ck3) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 16){
                         if(ck1 && ck3) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 17){
                         if(ck0 && ck1) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 18){
                         if(ck0 && ck2) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }else if(numArray[questionNum] == 19){
                         if(ck1 && ck2) correct +=1;
                         else {
-                            for(int i = 0; i <4; i++)
-                                incorrect[incorrectNum][i] = question[numArray[questionNum]][i];
+                            incorrect[incorrectNum] = numArray[questionNum];
                             incorrectNum += 1;
                         }
                     }
@@ -325,16 +310,10 @@ public class FindSameEmotionActivity extends AppCompatActivity {
 
                     if(questionNum == 5){
                         Intent intent = new Intent(getApplicationContext(), FindSameResultActivity.class);
-                        startActivity(intent);
                         intent.putExtra("correct", correct);
                         intent.putExtra("incorrectNum", incorrectNum);
                         intent.putExtra("incorrect", incorrect);
-                        System.out.println("맞은개수" + correct);
-                        System.out.println("틀린개수" +incorrectNum);
-                        for (int i = 0; i < 5; i++) {
-                            for(int j = 0; j < 4; j++)
-                                System.out.println(incorrect[i][j]);
-                        }
+                        startActivity(intent);
                     }else {
                         //rand(question[numArray[questionNum]], 4);
                         img1.setBackgroundResource(question[numArray[questionNum]][0]);
