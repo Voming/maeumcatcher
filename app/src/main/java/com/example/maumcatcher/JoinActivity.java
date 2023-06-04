@@ -1,7 +1,5 @@
 package com.example.maumcatcher;
 
-import static com.example.login.R.*;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -32,14 +30,14 @@ public class JoinActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(layout.activity_join);
+        setContentView(R.layout.activity_join);
 
-        idEditText = (EditText) findViewById(id.idEditText);
-        pwEditText = (EditText) findViewById(id.pwEditText);
-        nameEditText = (EditText) findViewById(id.nameEditText);
-        ageEditText = (EditText) findViewById(id.ageEditText);
+        idEditText = (EditText) findViewById(R.id.idEditText);
+        pwEditText = (EditText) findViewById(R.id.pwEditText);
+        nameEditText = (EditText) findViewById(R.id.nameEditText);
+        ageEditText = (EditText) findViewById(R.id.ageEditText);
 
-        btnJoin = (Button) findViewById(id.btnJoin);
+        btnJoin = (Button) findViewById(R.id.btnJoin);
 
         helper = new LoginDatabaseOpenHelper(JoinActivity.this, LoginDatabaseOpenHelper.tableName, null, version);
         database = helper.getWritableDatabase();
