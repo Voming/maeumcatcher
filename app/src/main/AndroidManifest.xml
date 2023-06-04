@@ -76,6 +76,12 @@
             android:name=".FindSameEmotionActivity"
             android:exported="false" />
 
+        <!-- 깔끔하게 튜토리얼만 보기 위해 타이틀 바를 제거 한다.
+           android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"   -->
+        <activity
+            android:name=".TutorialActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+
     </application>
 
 </manifest>
