@@ -27,7 +27,6 @@ public class ListViewAdapter extends BaseAdapter {
         return i; //그냥 위치값을 반환해도 되지만 원한다면 아이템의 num 을 반환해도 된다.
     }
 
-
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
@@ -45,7 +44,6 @@ public class ListViewAdapter extends BaseAdapter {
 
         TextView tvSense = (TextView)view.findViewById(R.id.body1);
         TextView tvSynonym = (TextView)view.findViewById(R.id.body2);
-        TextView tvExample = (TextView)view.findViewById(R.id.body3);
 
         //현재 포지션에 해당하는 아이템에 글자를 적용하기 위해 list배열에서 객체를 가져온다.
         CustomListView listdata = list.get(i);
@@ -54,7 +52,6 @@ public class ListViewAdapter extends BaseAdapter {
         tvName.setText(listdata.getName());
         tvSense.setText(listdata.getSense());
         tvSynonym.setText(listdata.getSynonym());
-        tvExample.setText(listdata.getExample());
 
         return view;
     }
