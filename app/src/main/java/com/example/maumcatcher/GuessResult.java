@@ -27,7 +27,7 @@ public class GuessResult extends AppCompatActivity {
 
         TextView scoreTxtView = (TextView) findViewById(R.id.scoreTXT);
         TextView expTxtView = (TextView) findViewById(R.id.explainTXT);
-        ImageView img = (ImageView)findViewById(R.id.circle_image);
+        ImageView img = (ImageView)findViewById(R.id.level);
 
         SharedPreferences sharedPreferences = getSharedPreferences("Result", Context.MODE_PRIVATE);
         int score1 = sharedPreferences.getInt(result, score);

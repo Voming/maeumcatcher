@@ -25,55 +25,65 @@
             android:layout_width="180dp"
             android:layout_height="80dp"
             android:text="기쁨"
+            android:textColor="@color/darkbrown"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_marginTop="40dp"
             android:layout_gravity="center"
             android:onClick="ClickButton1"
-            android:background="@drawable/button_patter"> </Button>
+            android:backgroundTint="#FFE7E7"> </Button>
 
         <Button
             android:id="@+id/angry"
             android:layout_width="180dp"
             android:layout_height="80dp"
             android:text="분노"
+            android:textColor="@color/darkbrown"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:onClick="ClickButton2"
-            android:background="@drawable/button_patter"> </Button>
+            android:backgroundTint="#EAE7FF"> </Button>
 
         <Button
             android:id="@+id/disgust"
             android:layout_width="180dp"
             android:layout_height="80dp"
             android:text="불쾌"
+            android:textColor="@color/darkbrown"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:onClick="ClickButton3"
-            android:background="@drawable/button_patter"> </Button>
+            android:backgroundTint="#E7FFEB"> </Button>
 
         <Button
             android:id="@+id/sad"
             android:layout_width="180dp"
             android:layout_height="80dp"
             android:text="슬픔"
+            android:textColor="@color/darkbrown"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:onClick="ClickButton4"
-            android:background="@drawable/button_patter"> </Button>
+            android:backgroundTint="#FFFDE7"> </Button>
 
         <Button
             android:id="@+id/fear"
             android:layout_width="180dp"
             android:layout_height="80dp"
             android:text="두려움"
+            android:textColor="@color/darkbrown"
             android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:onClick="ClickButton5"
-            android:background="@drawable/button_patter"> </Button>
+            android:backgroundTint="#FFF4E7"> </Button>
 
 
     </LinearLayout>

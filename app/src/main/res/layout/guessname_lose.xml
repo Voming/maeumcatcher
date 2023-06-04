@@ -16,19 +16,30 @@
             android:layout_marginLeft="16dp"
             android:src="@drawable/left_arrow_image" />
 
-        <ImageView
-            android:id="@+id/circle_image"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="90dp"
-            android:src="@drawable/level0" />
+            android:layout_marginTop="32dp">
+
+            <ImageView
+                android:id="@+id/circle_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/circle_image" />
+
+            <ImageView
+                android:id="@+id/level"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginTop="48dp"
+                android:src="@drawable/level5" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/scoreTXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:text="OO개를 맞췄어요!"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -42,7 +53,7 @@
             android:text="아쉽네요!"
             android:textAlignment="center"
             android:textColor="#656F77"
-            android:textSize="14dp" />
+            android:textSize="18dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -57,7 +68,8 @@
                 android:layout_height="50dp"
                 android:text="계속하기"
                 android:textSize="14sp"
-                android:layout_gravity="center"
+                android:backgroundTint="@color/darkbrown"
+                android:textStyle="bold"
                 android:onClick="NewButton"> </Button>
 
             <Button
@@ -67,7 +79,8 @@
                 android:text="나가기"
                 android:textSize="14sp"
                 android:layout_marginLeft="24dp"
-                android:layout_gravity="center"
+                android:backgroundTint="@color/darkbrown"
+                android:textStyle="bold"
                 android:onClick="EndButton"> </Button>
 
         </LinearLayout>
@@ -79,7 +92,9 @@
             android:layout_gravity="center"
             android:onClick="checkAnswer"
             android:text="오답노트"
-            android:textSize="14sp"></Button>
+            android:textSize="14sp"
+            android:backgroundTint="@color/darkbrown"
+            android:textStyle="bold"></Button>
 
     </LinearLayout>
 
