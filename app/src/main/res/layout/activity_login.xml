@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/idText"
+        android:text="이메일"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/pwText" />
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/pwText"
+        android:text="비밀번호"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idText"
+        />
+
+
+    <EditText
+        android:layout_gravity="center"
+        android:id="@+id/pwEditText"
+        android:text=""
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+
+        android:contentDescription="비밀번호"
+        android:layout_alignTop="@+id/pwText"
+        android:layout_toEndOf="@+id/pwText"
+        android:layout_alignBottom="@+id/pwText"
+        android:layout_alignParentEnd="true"
+        tools:ignore="LabelFor" />
+
+
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:text="로그인"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle"
+            android:layout_gravity="center"
+            android:layout_below="@+id/pwText"
+
+            />
+
+        <Button
+            android:id="@+id/btnJoin"
+            android:text="회원가입"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle"
+            android:layout_gravity="center"
+            android:layout_below="@+id/btnLogin"/>
+
+
+    <EditText
+        android:id="@+id/idEditText"
+        android:text=""
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+
+        android:contentDescription="아이디"
+        android:layout_alignTop="@+id/idText"
+        android:layout_alignBottom="@+id/idText"
+        android:layout_toEndOf="@+id/pwText"
+        android:layout_alignParentEnd="true"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/idText"
+        android:text="이메일"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/pwText" />
+    <TextView
+        android:id="@+id/pwText"
+        android:text="비밀번호"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idText"
+        />
+    <TextView
+        android:id="@+id/nameText"
+        android:text="이름"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pwText"
+        />
+    <TextView
+        android:id="@+id/ageText"
+        android:text="나이"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameText"
+        />
+
+
+    <EditText
+        android:id="@+id/pwEditText"
+        android:text=""
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+
+        android:contentDescription="비밀번호"
+        android:layout_alignTop="@+id/pwText"
+        android:layout_toEndOf="@+id/pwText"
+        android:layout_alignBottom="@+id/pwText"
+        android:layout_alignParentEnd="true"
+        tools:ignore="LabelFor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ageText"
+        >
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:text="로그인"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/btnJoin"
+            android:text="회원가입"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/idEditText"
+        android:text=""
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+
+        android:contentDescription="아이디"
+        android:layout_alignTop="@+id/idText"
+        android:layout_alignBottom="@+id/idText"
+        android:layout_toEndOf="@+id/pwText"
+        android:layout_alignParentEnd="true"
+        />
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/nameText"
+        android:layout_alignBottom="@+id/nameText"
+        android:layout_alignParentEnd="true"
+
+        android:layout_toEndOf="@+id/pwText"
+        android:contentDescription="이름"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/ageEditText"
+        android:text=""
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+
+        android:contentDescription="나이"
+        android:layout_alignTop="@+id/ageText"
+        android:layout_alignBottom="@id/ageText"
+        android:layout_toEndOf="@+id/pwText"
+        android:layout_alignParentEnd="true"
+        />
+</RelativeLayout>
