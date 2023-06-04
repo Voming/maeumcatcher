@@ -1,5 +1,7 @@
 package com.example.maumcatcher;
 
+import static java.sql.Types.NULL;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -49,7 +51,7 @@ public class JoinActivity extends AppCompatActivity {
                 String id = idEditText.getText().toString();
                 String pw = pwEditText.getText().toString();
                 String name = nameEditText.getText().toString();
-                String age = ageEditText.getText().toString();
+                Integer age = Integer.parseInt(ageEditText.getText().toString());
 
                 if(id.length() == 0 ) {
                     //아이디와 비밀번호는 필수 입력사항입니다.
@@ -64,7 +66,7 @@ public class JoinActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(JoinActivity.this, "이름은 필수 입력사항입니다.", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
-                }else if(age.length() == 0){
+                }else if(age==NULL){
                     Toast toast = Toast.makeText(JoinActivity.this, "나이는 필수 입력사항입니다.", Toast.LENGTH_SHORT);
                     toast.show();
                     return;

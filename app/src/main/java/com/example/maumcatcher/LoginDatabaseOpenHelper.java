@@ -23,11 +23,11 @@ public class LoginDatabaseOpenHelper extends SQLiteOpenHelper {
     }
 
     public void createTable(SQLiteDatabase db){
-        String sql = "CREATE TABLE " + tableName + "(id text, pw text, name text, age text, avg real)";
+        String sql = "CREATE TABLE " + tableName + "(id text, pw text, name text, age Integer, FindAvg real, FeelingAvg real, GuessAvg real)";
         db.execSQL(sql);
     }
 
-    public void insertUser(SQLiteDatabase db, String id, String pw, String name, String age){
+    public void insertUser(SQLiteDatabase db, String id, String pw, String name, Integer age){
         Log.i("tag","회원가입을 했을때 실행함");
         db.beginTransaction();
         try {

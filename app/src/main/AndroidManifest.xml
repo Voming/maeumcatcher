@@ -44,7 +44,7 @@
             android:name=".GuessCheck"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".JoinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -79,7 +79,7 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".JoinActivity"
+            android:name=".MainActivity"
             android:exported="false" />
 
         <!-- 깔끔하게 튜토리얼만 보기 위해 타이틀 바를 제거 한다.
