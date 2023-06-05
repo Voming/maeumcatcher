@@ -58,6 +58,6 @@
         android:layout_marginTop="60dp"
         android:textStyle="bold"
         android:textColor="@color/darkbrown"
-        android:text="'표정 따라하기'를 통해 \n 직접 표정을 지어보아요!" />
+        android:text="직접 사진을 찍으며 \n 표정을 학습해요!" />
 
 </LinearLayout>

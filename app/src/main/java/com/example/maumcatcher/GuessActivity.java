@@ -3,7 +3,10 @@ package com.example.maumcatcher;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -12,12 +15,15 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public class GuessActivity extends AppCompatActivity {
 
@@ -31,6 +37,14 @@ public class GuessActivity extends AppCompatActivity {
     public static String result="highscore";
     static  int score = 0;
     TextView quesno;
+
+    // 타이머
+    private static final long COUNTDOWN_IN_MILLIS = 30000;
+    private TextView CountDown;
+    private ColorStateList textColorDefaultCd;
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMillis;
+
 
     // AnswerList
     public ArrayList<String> EXanswerList = new ArrayList<String>();
@@ -59,6 +73,9 @@ public class GuessActivity extends AppCompatActivity {
         butNext = (ImageButton)findViewById(R.id.nextBtn);
         setQuestionView();
 
+        CountDown = (TextView)findViewById(R.id.time_txt);
+        textColorDefaultCd = CountDown.getTextColors();
+
     }
 
     private void setQuestionView(){
@@ -68,10 +85,12 @@ public class GuessActivity extends AppCompatActivity {
         progressbar.setIndeterminate(false);
         //Log.d("문제번호", String.valueOf(quid));
 
+        timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+        startCountDown();
+
         quesno=(TextView)findViewById(R.id.tv_progress);
         String text = quid + " / 5";
         quesno.setText(text);
-
         quid++;
     }
 
@@ -114,6 +133,56 @@ public class GuessActivity extends AppCompatActivity {
             intent.putStringArrayListExtra("actualAnswer", EXactualAnswer);
             startActivity(intent);
             finish();
+        }
+    }
+
+    private void startCountDown(){
+        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                timeLeftInMillis=0;
+                updateCountDownText();
+
+                // 다음 문제로 넘어가는 함수 호출해야 함 (카운트 다운**)
+                wrongAnswer();
+                countDownTimer.cancel();
+                currentQuestion = questionList.get(quid);
+                setQuestionView();
+            }
+        }.start();
+    }
+
+    private void updateCountDownText(){
+        int minutes = (int)(timeLeftInMillis/1000)/60;
+        int seconds = (int) (timeLeftInMillis/1000)%60;
+        String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d",minutes,seconds);
+        CountDown.setText(timeFormatted);
+        if(timeLeftInMillis<10000){
+            CountDown.setTextColor(Color.RED);
+        } else{
+            CountDown.setTextColor(textColorDefaultCd);
+        }
+    }
+
+    private void wrongAnswer(){
+        RadioGroup grp = (RadioGroup)findViewById(R.id.radioGroup);
+        String selectedAnswer = "선택하지 않았습니다.";
+        EXanswerList.add(currentQuestion.getQuestion());
+        EXselectedAnswer.add(selectedAnswer);
+        EXactualAnswer.add(currentQuestion.getAnswer());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(countDownTimer != null){
+            countDownTimer.cancel();
         }
     }
 
