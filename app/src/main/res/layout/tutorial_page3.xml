@@ -58,6 +58,6 @@
         android:layout_marginTop="60dp"
         android:textStyle="bold"
         android:textColor="@color/darkbrown"
-        android:text="'누가 같을까'로 \n 표정 분류를 해보아요!" />
+        android:text="같은 표정끼리 선택하여 \n 표정 분류를 해보아요!" />
 
 </LinearLayout>

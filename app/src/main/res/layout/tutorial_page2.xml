@@ -58,6 +58,6 @@
         android:layout_marginTop="60dp"
         android:textStyle="bold"
         android:textColor="@color/darkbrown"
-        android:text="'이름을 맞춰라'의 퀴즈를 통해 \n 학습상태를 확인해 보아요!" />
+        android:text="퀴즈를 통해 감정분류 \n 학습상태를 확인해 보아요!" />
 
 </LinearLayout>
