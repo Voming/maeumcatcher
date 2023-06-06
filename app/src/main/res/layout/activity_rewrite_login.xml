@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".JoinActivity"
+    tools:context=".RewriteLoginActivity"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="회원가입"
+        android:text="회원 정보 수정"
         android:textStyle="bold"
         android:textSize="30dp"
         android:layout_marginLeft="30dp"
@@ -32,7 +32,7 @@
             android:layout_marginTop="40dp"/>
 
         <EditText
-            android:id="@+id/nameEditText"
+            android:id="@+id/etName"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:hint="이름을 입력하세요"
@@ -52,7 +52,7 @@
             android:layout_marginTop="20dp"/>
 
         <EditText
-            android:id="@+id/idEditText"
+            android:id="@+id/etID"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:hint="이메일을 입력하세요"
@@ -72,7 +72,7 @@
             android:layout_marginTop="20dp"/>
 
         <EditText
-            android:id="@+id/pwEditText"
+            android:id="@+id/etPass"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:hint="비밀번호를 입력하세요"
@@ -92,7 +92,7 @@
             android:layout_marginTop="20dp"/>
 
         <EditText
-            android:id="@+id/ageEditText"
+            android:id="@+id/etAge"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:hint="나이를 입력하세요"
@@ -104,10 +104,10 @@
 
 
     <Button
-        android:id="@+id/btnJoin"
+        android:id="@+id/save"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="회원가입"
+        android:text="저장"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/pink"
