@@ -13,7 +13,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 
+
 public class MypageFragment extends Fragment {
+    String id, pw, name, age;
+
 
 
 
@@ -26,9 +29,15 @@ public class MypageFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        Bundle extra = getArguments();
 
+        if(extra != null){
+            id = extra.getString("id");
+            pw = extra.getString("pw");
+            name = extra.getString("name");
+            age = extra.getString("age");
         }
+
     }
 
     @Override
@@ -41,6 +50,12 @@ public class MypageFragment extends Fragment {
         TextView game1 = view.findViewById(R.id.game1);
         TextView game2 = view.findViewById(R.id.game2);
         TextView game3 = view.findViewById(R.id.game3);
+
+        TextView nametxt = view.findViewById(R.id.name);
+        TextView emailtxt = view.findViewById(R.id.email);
+
+        nametxt.setText(name);
+        emailtxt.setText(id);
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +71,10 @@ public class MypageFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),RewriteLoginActivity.class); //fragment라서 activity intent와는 다른 방식
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("id", id);
+                intent.putExtra("pw", pw);
+                intent.putExtra("name", name);
+                intent.putExtra("age", age);
                 startActivity(intent);
             }
         });

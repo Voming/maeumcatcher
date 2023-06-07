@@ -19,10 +19,18 @@ public class MainActivity extends AppCompatActivity {
     private FeelingFragment feelingfragment = new FeelingFragment();
     private MypageFragment mypagefragment = new MypageFragment();
 
+    String id, pw, name, age;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent getintent = getIntent();
+        id = getintent.getStringExtra("id");
+        pw = getintent.getStringExtra("pw");
+        name = getintent.getStringExtra("name");
+        age = getintent.getStringExtra("age");
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameLayout, playfragment).commitAllowingStateLoss();
@@ -58,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 case R.id.playItem:
                     transaction.replace(R.id.frameLayout, playfragment).commitAllowingStateLoss();
+
                     break;
                 case R.id.emotionItem:
                     transaction.replace(R.id.frameLayout, emotionfragment).commitAllowingStateLoss();
@@ -67,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.mypageItem:
                     transaction.replace(R.id.frameLayout, mypagefragment).commitAllowingStateLoss();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", id);
+                    bundle.putString("pw", pw);
+                    bundle.putString("name", name);
+                    bundle.putString("age", age);
+                    mypagefragment.setArguments(bundle);
                     break;
             }
             return true;

@@ -105,9 +105,9 @@
 
     <Button
         android:id="@+id/save"
-        android:layout_width="150dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:text="저장"
+        android:text="저장 밎 재로그인"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/pink"
