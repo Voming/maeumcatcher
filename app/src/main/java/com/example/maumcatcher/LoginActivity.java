@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText idEditText;
     EditText pwEditText;
     Button btnLogin;
-    Button btnJoin;
+
 
     String sql;
     Cursor cursor;
@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
         pwEditText = (EditText) findViewById(R.id.pwEditText);
 
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnJoin = (Button) findViewById(R.id.btnJoin);
 
         helper = new LoginDatabaseOpenHelper(LoginActivity.this, LoginDatabaseOpenHelper.tableName, null, version);
         database = helper.getWritableDatabase();
@@ -82,17 +81,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnJoin.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                //회원가입 버튼 클릭
-                Toast toast = Toast.makeText(LoginActivity.this, "회원가입 화면으로 이동", Toast.LENGTH_SHORT);
-                toast.show();
-                Intent intent = new Intent(getApplicationContext(),JoinActivity.class);
-                startActivity(intent);
-                //finish();
-            }
-        });
 
     }
 }

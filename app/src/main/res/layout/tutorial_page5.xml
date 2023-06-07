@@ -58,6 +58,6 @@
         android:layout_marginTop="60dp"
         android:textStyle="bold"
         android:textColor="@color/darkbrown"
-        android:text="'무슨 감정일까'를 통해 \n 구체적인 상황 시뮬레이션을 \n 진행해보아요!" />
+        android:text="구체적인 상황 시뮬레이션을 진행하며 \n 상황에 맞는 감정을 학습해요!" />
 
 </LinearLayout>

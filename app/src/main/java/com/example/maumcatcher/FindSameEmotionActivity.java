@@ -1,8 +1,10 @@
 package com.example.maumcatcher;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Random;
 
 public class FindSameEmotionActivity extends AppCompatActivity {
@@ -97,10 +100,22 @@ public class FindSameEmotionActivity extends AppCompatActivity {
     int incorrectNum = 0;
     int questionNum = 0; //질문 위치번호
 
+    // 타이머
+    private static final long COUNTDOWN_IN_MILLIS = 300000;
+    private TextView CountDown;
+    private ColorStateList textColorDefaultCd;
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMillis;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_same_emotion);
+
+        CountDown = (TextView)findViewById(R.id.time_txt);
+        textColorDefaultCd = CountDown.getTextColors();
+        timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+        startCountDown();
 
         img1 = findViewById(R.id.img1);
         img2 = findViewById(R.id.img2);
@@ -330,6 +345,50 @@ public class FindSameEmotionActivity extends AppCompatActivity {
         img3.setOnClickListener(onClickListener);
         img4.setOnClickListener(onClickListener);
 
+    }
+
+    private void startCountDown(){
+        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                timeLeftInMillis=0;
+                updateCountDownText();
+
+                // 다음으로 넘어가는 함수 호출 (선택하지 못한 문제들 오답 처리, 결과창으로 이동)
+                countDownTimer.cancel();
+                Intent intent = new Intent(getApplicationContext(), FindSameResultActivity.class);
+                intent.putExtra("correct", correct);
+                intent.putExtra("incorrectNum", incorrectNum);
+                intent.putExtra("incorrect", incorrect);
+                startActivity(intent);
+            }
+        }.start();
+    }
+
+    private void updateCountDownText(){
+        int minutes = (int)(timeLeftInMillis/1000)/60;
+        int seconds = (int) (timeLeftInMillis/1000)%60;
+        String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d",minutes,seconds);
+        CountDown.setText(timeFormatted);
+        if(timeLeftInMillis<10000){
+            CountDown.setTextColor(Color.RED);
+        } else{
+            CountDown.setTextColor(textColorDefaultCd);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(countDownTimer != null){
+            countDownTimer.cancel();
+        }
     }
 
     /* //배열 섞기

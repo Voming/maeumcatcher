@@ -58,6 +58,6 @@
         android:layout_marginTop="60dp"
         android:textStyle="bold"
         android:textColor="@color/darkbrown"
-        android:text="감정언어의 분류 5가지를 \n 골고루 학습해요!" />
+        android:text="단계에 따라 차례대로 학습해요! \n 감정언어의 분류 5가지를 \n 골고루 확인해보아요!" />
 
 </LinearLayout>

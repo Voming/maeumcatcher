@@ -28,6 +28,7 @@ public class JoinActivity extends AppCompatActivity {
 
     String sql;
     Cursor cursor;
+    //
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
