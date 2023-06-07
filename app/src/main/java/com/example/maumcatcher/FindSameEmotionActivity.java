@@ -361,8 +361,12 @@ public class FindSameEmotionActivity extends AppCompatActivity {
                 updateCountDownText();
 
                 // 다음으로 넘어가는 함수 호출 (선택하지 못한 문제들 오답 처리, 결과창으로 이동)
-
                 countDownTimer.cancel();
+                Intent intent = new Intent(getApplicationContext(), FindSameResultActivity.class);
+                intent.putExtra("correct", correct);
+                intent.putExtra("incorrectNum", incorrectNum);
+                intent.putExtra("incorrect", incorrect);
+                startActivity(intent);
             }
         }.start();
     }
