@@ -88,6 +88,7 @@ public class JoinActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+                cursor.close();
             }
         });
     }

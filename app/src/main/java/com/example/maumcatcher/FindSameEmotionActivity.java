@@ -101,7 +101,7 @@ public class FindSameEmotionActivity extends AppCompatActivity {
     int questionNum = 0; //질문 위치번호
 
     // 타이머
-    private static final long COUNTDOWN_IN_MILLIS = 300000;
+    private static final long COUNTDOWN_IN_MILLIS = 150000;
     private TextView CountDown;
     private ColorStateList textColorDefaultCd;
     private CountDownTimer countDownTimer;

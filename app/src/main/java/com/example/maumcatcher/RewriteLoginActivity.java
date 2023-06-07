@@ -28,6 +28,8 @@ public class RewriteLoginActivity extends AppCompatActivity {
     String sql;
     Cursor cursor;
 
+    String id, pw, name, age;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,18 @@ public class RewriteLoginActivity extends AppCompatActivity {
         etPass = findViewById(R.id.etPass);
         etAge = findViewById(R.id.etAge);
         save = findViewById(R.id.save);
+
+        //이메일은 변경하지 못하도록
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
+        pw = intent.getStringExtra("pw");
+        name = intent.getStringExtra("name");
+        age = intent.getStringExtra("age");
+
+        etName.setText(name);
+        etID.setText(id);
+        etPass.setText(pw);
+        etAge.setText(age);
 
         helper = new LoginDatabaseOpenHelper(RewriteLoginActivity.this, LoginDatabaseOpenHelper.tableName, null, version);
         database = helper.getWritableDatabase();
