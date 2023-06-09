@@ -55,7 +55,7 @@
             android:id="@+id/idEditText"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:hint="이메일을 입력하세요"
+            android:hint="이메일을 입력하세요. 아이디는 변경이 불가합니다."
             android:textColor="@color/darkbrown"
             android:textSize="15dp"
             android:layout_marginTop="5dp"

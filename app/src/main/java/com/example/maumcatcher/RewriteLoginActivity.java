@@ -53,6 +53,8 @@ public class RewriteLoginActivity extends AppCompatActivity {
         etPass.setText(pw);
         etAge.setText(age);
 
+        etID.setEnabled(false);
+
         helper = new LoginDatabaseOpenHelper(RewriteLoginActivity.this, LoginDatabaseOpenHelper.tableName, null, version);
         database = helper.getWritableDatabase();
 
@@ -84,21 +86,24 @@ public class RewriteLoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                sql = "SELECT id FROM "+ helper.tableName + " WHERE id = '" + id + "'";
+                sql = "UPDATE " + helper.tableName + " SET name = " + name + " WHERE id = '" + id + "'";
                 cursor = database.rawQuery(sql, null);
+                helper.updateUser(database,id,pw,name,age);
 
-                if(cursor.getCount() != 0){
-                    //존재하는 아이디입니다.
-                    Toast toast = Toast.makeText(RewriteLoginActivity.this, "존재하는 아이디입니다.", Toast.LENGTH_SHORT);
-                    toast.show();
-                }else{
-                    helper.insertUser(database,id,pw,name,age);
-                    Toast toast = Toast.makeText(RewriteLoginActivity.this, "가입이 완료되었습니다. 로그인을 해주세요.", Toast.LENGTH_SHORT);
-                    toast.show();
-                    Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+
+                sql = "UPDATE " + helper.tableName + " SET pw = " + pw + " WHERE id = '" + id + "'";
+                cursor = database.rawQuery(sql, null);
+                helper.updateUser(database,id,pw,name,age);
+
+                sql = "UPDATE " + helper.tableName + " SET age = " + age + " WHERE id = '" + id + "'";
+                cursor = database.rawQuery(sql, null);
+                helper.updateUser(database,id,pw,name,age);
+                Toast toast = Toast.makeText(RewriteLoginActivity.this, "수정이 완료되었습니다. 재로그인을 해주세요.", Toast.LENGTH_SHORT);
+                toast.show();
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
+                finish();
+
             }
         });
 

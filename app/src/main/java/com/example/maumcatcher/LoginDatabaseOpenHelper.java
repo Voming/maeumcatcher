@@ -41,5 +41,19 @@ public class LoginDatabaseOpenHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void updateUser(SQLiteDatabase db, String id, String pw, String name, Integer age){
+        Log.i("tag","회원가입을 했을때 실행함");
+        db.beginTransaction();
+        try {
+            String sql = "UPDATE " + tableName + " SET name = '" + name + "', pw = '" + pw + "' , age = '" + age + "' WHERE id = '" + id + "'";
+            db.execSQL(sql);
+            db.setTransactionSuccessful();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            db.endTransaction();
+        }
+    }
+
 
 }
