@@ -27,9 +27,18 @@ public class TutorialActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnSkip, btnNext;
 
+    String id, pw, name, age;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
+        pw = intent.getStringExtra("pw");
+        name = intent.getStringExtra("name");
+        age = intent.getStringExtra("age");
 
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -67,8 +76,12 @@ public class TutorialActivity extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(TutorialActivity.this, MainActivity.class));
-                finish();
+                Intent intent = new Intent(TutorialActivity.this, MainActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("pw", pw);
+                intent.putExtra("name", name);
+                intent.putExtra("age", age);
+                startActivity(intent);
             }
         });
 
@@ -83,8 +96,12 @@ public class TutorialActivity extends AppCompatActivity {
                 }
                 else {
                     // 마지막 페이지라면 메인페이지로 이동
-                    startActivity(new Intent(TutorialActivity.this, MainActivity.class));
-                    finish();
+                    Intent intent = new Intent(TutorialActivity.this, MainActivity.class);
+                    intent.putExtra("id", id);
+                    intent.putExtra("pw", pw);
+                    intent.putExtra("name", name);
+                    intent.putExtra("age", age);
+                    startActivity(intent);
                 }
             }
         });

@@ -86,18 +86,10 @@ public class RewriteLoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                sql = "UPDATE " + helper.tableName + " SET name = " + name + " WHERE id = '" + id + "'";
+                sql = "UPDATE " + helper.tableName + " SET name = '" + name + "', pw = '" + pw + "' , age = '" + age + "' WHERE id = '" + id + "'";
                 cursor = database.rawQuery(sql, null);
                 helper.updateUser(database,id,pw,name,age);
 
-
-                sql = "UPDATE " + helper.tableName + " SET pw = " + pw + " WHERE id = '" + id + "'";
-                cursor = database.rawQuery(sql, null);
-                helper.updateUser(database,id,pw,name,age);
-
-                sql = "UPDATE " + helper.tableName + " SET age = " + age + " WHERE id = '" + id + "'";
-                cursor = database.rawQuery(sql, null);
-                helper.updateUser(database,id,pw,name,age);
                 Toast toast = Toast.makeText(RewriteLoginActivity.this, "수정이 완료되었습니다. 재로그인을 해주세요.", Toast.LENGTH_SHORT);
                 toast.show();
                 Intent intent = new Intent(getApplicationContext(),LoginActivity.class);

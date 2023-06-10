@@ -1,6 +1,8 @@
 package com.example.maumcatcher;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,7 +18,6 @@ import android.widget.TextView;
 
 public class MypageFragment extends Fragment {
     String id, pw, name, age;
-
 
 
 
@@ -38,6 +39,8 @@ public class MypageFragment extends Fragment {
             age = extra.getString("age");
         }
 
+
+
     }
 
     @Override
@@ -46,10 +49,8 @@ public class MypageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mypage, container, false);
 
         Button button2 = (Button) view.findViewById(R.id.button2); //fragment에서 findViewByid는 view.을 이용해서 사용
+        Button button3 = (Button) view.findViewById(R.id.button3);
         Button rewrite = (Button) view.findViewById(R.id.rewrite);
-        TextView game1 = view.findViewById(R.id.game1);
-        TextView game2 = view.findViewById(R.id.game2);
-        TextView game3 = view.findViewById(R.id.game3);
 
         TextView nametxt = view.findViewById(R.id.name);
         TextView emailtxt = view.findViewById(R.id.email);
@@ -57,11 +58,15 @@ public class MypageFragment extends Fragment {
         nametxt.setText(name);
         emailtxt.setText(id);
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),TutorialActivity.class); //fragment라서 activity intent와는 다른 방식
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("id", id);
+                intent.putExtra("pw", pw);
+                intent.putExtra("name", name);
+                intent.putExtra("age", age);
                 startActivity(intent);
             }
         });
@@ -70,6 +75,18 @@ public class MypageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),RewriteLoginActivity.class); //fragment라서 activity intent와는 다른 방식
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("id", id);
+                intent.putExtra("pw", pw);
+                intent.putExtra("name", name);
+                intent.putExtra("age", age);
+                startActivity(intent);
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),AverageActivity.class); //fragment라서 activity intent와는 다른 방식
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 intent.putExtra("id", id);
                 intent.putExtra("pw", pw);

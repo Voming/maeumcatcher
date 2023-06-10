@@ -51,10 +51,15 @@ public class GuessActivity extends AppCompatActivity {
     public ArrayList<String> EXselectedAnswer = new ArrayList<String>();
     public ArrayList<String> EXactualAnswer = new ArrayList<String>();
 
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guessname);
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
+        System.out.println("id = " +id);
 
         //get all question from db
         GuessDB dbHelper = new GuessDB(this);
@@ -131,6 +136,7 @@ public class GuessActivity extends AppCompatActivity {
             intent.putStringArrayListExtra("answerList", EXanswerList);
             intent.putStringArrayListExtra("selectedAnswer", EXselectedAnswer);
             intent.putStringArrayListExtra("actualAnswer", EXactualAnswer);
+            intent.putExtra("id", id);
             startActivity(intent);
             finish();
         }

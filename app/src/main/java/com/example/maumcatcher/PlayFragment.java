@@ -13,9 +13,26 @@ import android.widget.ImageButton;
 
 public class PlayFragment extends Fragment {
 
-    private View view;
-    private ImageButton btn1;
-    private ImageButton btn2;
+    View view;
+    ImageButton btn1;
+
+    ImageButton btn2;
+
+    String id;
+
+    public PlayFragment() {
+        // Required empty public constructor
+    }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle extra = getArguments();
+
+        if(extra != null){
+            id = extra.getString("id");
+
+        }
+        System.out.println("play id = " +id);
+    }
 
     @Nullable
     @Override
@@ -40,6 +57,7 @@ public class PlayFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),GuessActivity.class); //fragment라서 activity intent와는 다른 방식
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
         });

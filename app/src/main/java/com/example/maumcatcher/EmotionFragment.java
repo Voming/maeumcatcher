@@ -16,6 +16,16 @@ public class EmotionFragment extends Fragment {
     private ImageButton btn1;
     private ImageButton btn2;
 
+    String id;
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle extra = getArguments();
+
+        if(extra != null){
+            id = extra.getString("id");
+        }
+    }
 
     @Nullable
     @Override
@@ -42,6 +52,8 @@ public class EmotionFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),FindSameEmotionActivity.class); //fragment라서 activity intent와는 다른 방식
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                System.out.println("id = " +id);
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
         });

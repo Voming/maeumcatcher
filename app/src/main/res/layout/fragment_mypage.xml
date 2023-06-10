@@ -15,7 +15,7 @@
         android:textStyle="bold"
         android:textSize="30dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:textColor="@color/darkbrown"/>
 
     <TextView
@@ -30,7 +30,7 @@
 
     <Button
         android:id="@+id/rewrite"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="회원정보 수정"
         android:layout_marginTop="15dp"
@@ -40,111 +40,31 @@
         android:textStyle="bold"
         android:layout_gravity="center"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="정답률"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/darkbrown"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginRight="40dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="감정단어랑 놀기"
-                android:textColor="@color/darkbrown"
-                android:textSize="13dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:id="@+id/game1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:gravity="center"
-                android:text="50%"
-                android:textStyle="bold"
-                android:background="@color/skyblue"
-                android:textSize="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkbrown"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginRight="40dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="누가 같을까?"
-                android:textColor="@color/darkbrown"
-                android:textSize="13dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:id="@+id/game2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:gravity="center"
-                android:text="50%"
-                android:textStyle="bold"
-                android:background="@color/skyblue"
-                android:textSize="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkbrown"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="무슨 감정일까"
-                android:textColor="@color/darkbrown"
-                android:textSize="13dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:id="@+id/game3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:gravity="center"
-                android:text="50%"
-                android:textStyle="bold"
-                android:background="@color/skyblue"
-                android:textSize="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/darkbrown"/>
-        </LinearLayout>
-    </LinearLayout>
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="튜토리얼"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:text="정답률 확인하기"
+        android:backgroundTint="@color/skyblue"
+        android:textColor="@color/darkbrown"
+        android:textSize="13dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:text="튜토리얼"
+        android:backgroundTint="@color/skyblue"
+        android:textColor="@color/darkbrown"
+        android:textSize="13dp"
+        android:textStyle="bold"/>
 
 
 

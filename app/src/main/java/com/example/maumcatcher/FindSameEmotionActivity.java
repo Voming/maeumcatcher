@@ -107,6 +107,8 @@ public class FindSameEmotionActivity extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
 
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +118,10 @@ public class FindSameEmotionActivity extends AppCompatActivity {
         textColorDefaultCd = CountDown.getTextColors();
         timeLeftInMillis = COUNTDOWN_IN_MILLIS;
         startCountDown();
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
+        System.out.println("id = " +id);
 
         img1 = findViewById(R.id.img1);
         img2 = findViewById(R.id.img2);
@@ -328,6 +334,7 @@ public class FindSameEmotionActivity extends AppCompatActivity {
                         intent.putExtra("correct", correct);
                         intent.putExtra("incorrectNum", incorrectNum);
                         intent.putExtra("incorrect", incorrect);
+                        intent.putExtra("id", id);
                         startActivity(intent);
                     }else {
                         //rand(question[numArray[questionNum]], 4);

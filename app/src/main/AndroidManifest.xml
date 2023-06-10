@@ -26,7 +26,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaumCatcher"
         tools:targetApi="31">
-
+        <activity
+            android:name=".AverageActivity"
+            android:exported="false" />
         <activity
             android:name=".RewriteLoginActivity"
             android:exported="false" />

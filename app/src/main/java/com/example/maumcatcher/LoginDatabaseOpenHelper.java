@@ -55,5 +55,47 @@ public class LoginDatabaseOpenHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void updateFindAvgUser(SQLiteDatabase db, String id, float FindAvg){
+        Log.i("tag","회원가입을 했을때 실행함");
+        db.beginTransaction();
+        try {
+            String sql = "UPDATE " + tableName + " SET FindAvg = '" + FindAvg +"' WHERE id = '" + id + "'";
+            db.execSQL(sql);
+            db.setTransactionSuccessful();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            db.endTransaction();
+        }
+    }
+
+    public void updateFeelingAvgUser(SQLiteDatabase db, String id, float FeelingAvg){
+        Log.i("tag","회원가입을 했을때 실행함");
+        db.beginTransaction();
+        try {
+            String sql = "UPDATE " + tableName + " SET FeelingAvg = '" + FeelingAvg +"' WHERE id = '" + id + "'";
+            db.execSQL(sql);
+            db.setTransactionSuccessful();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            db.endTransaction();
+        }
+    }
+
+    public void updateGuessAvgUser(SQLiteDatabase db, String id, float GuessAvg){
+        Log.i("tag","회원가입을 했을때 실행함");
+        db.beginTransaction();
+        try {
+            String sql = "UPDATE " + tableName + " SET GuessAvg = '" + GuessAvg +"' WHERE id = '" + id + "'";
+            db.execSQL(sql);
+            db.setTransactionSuccessful();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            db.endTransaction();
+        }
+    }
+
 
 }
