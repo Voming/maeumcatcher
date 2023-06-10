@@ -127,6 +127,7 @@ public class FeelingActivity extends AppCompatActivity {
         }
 
         if(quid<6){
+            countDownTimer.cancel();
             currentQuestion = questionList.get(quid);
             setQuestionView();
         }else{
