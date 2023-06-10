@@ -71,11 +71,13 @@ public class GuessResult extends AppCompatActivity {
             expTxtView.setText("조금 더 학습해볼까요?");
 
             dbAvg = 0;
-            if(Float.valueOf(bfAvg) != null){
+            if(bfAvg == null){
+               //
+            }else if(Float.valueOf(bfAvg) != null){
                 dbAvg = (Float.valueOf(bfAvg) + dbAvg) /2;
                 System.out.println("수정됨 = " + dbAvg);
             }
-            sql =  "UPDATE " + helper.tableName + " SET FindAvg = '" + dbAvg +"' WHERE id = '" + id + "'";
+            sql =  "UPDATE " + helper.tableName + " SET FindAvg = '" + Float.valueOf(dbAvg) +"' WHERE id = '" + id + "'";
             cursor = database.rawQuery(sql, null);
             helper.updateFindAvgUser(database,id, dbAvg);
 
@@ -85,11 +87,13 @@ public class GuessResult extends AppCompatActivity {
             expTxtView.setText("조금 더 노력해봅시다!");
 
             dbAvg = 20;
-            if(Float.valueOf(bfAvg) != null){
+            if(bfAvg == null){
+                //
+            }else if(Float.valueOf(bfAvg) != null){
                 dbAvg = (Float.valueOf(bfAvg) + dbAvg) /2;
                 System.out.println("수정됨 = " + dbAvg);
             }
-            sql =  "UPDATE " + helper.tableName + " SET FindAvg = '" + dbAvg +"' WHERE id = '" + id + "'";
+            sql =  "UPDATE " + helper.tableName + " SET FindAvg = '" + Float.valueOf(dbAvg) +"' WHERE id = '" + id + "'";
             cursor = database.rawQuery(sql, null);
             helper.updateFindAvgUser(database,id, dbAvg);
 
@@ -99,11 +103,13 @@ public class GuessResult extends AppCompatActivity {
             expTxtView.setText("아쉽네요!");
 
             dbAvg = 40;
-            if(Float.valueOf(bfAvg) != null){
+            if(bfAvg == null){
+                //
+            }else if(Float.valueOf(bfAvg) != null){
                 dbAvg = (Float.valueOf(bfAvg) + dbAvg) /2;
                 System.out.println("수정됨 = " + dbAvg);
             }
-            sql =  "UPDATE " + helper.tableName + " SET FindAvg = '" + dbAvg +"' WHERE id = '" + id + "'";
+            sql =  "UPDATE " + helper.tableName + " SET FindAvg = '" + Float.valueOf(dbAvg) +"' WHERE id = '" + id + "'";
             cursor = database.rawQuery(sql, null);
             helper.updateFindAvgUser(database,id, dbAvg);
 
@@ -113,11 +119,13 @@ public class GuessResult extends AppCompatActivity {
             expTxtView.setText("아쉽네요!");
 
             dbAvg = 60;
-            if(Float.valueOf(bfAvg) != null){
+            if(bfAvg == null){
+                //
+            }else if(Float.valueOf(bfAvg) != null){
                 dbAvg = (Float.valueOf(bfAvg) + dbAvg) /2;
                 System.out.println("수정됨 = " + dbAvg);
             }
-            sql =  "UPDATE " + helper.tableName + " SET FindAvg = '" + dbAvg +"' WHERE id = '" + id + "'";
+            sql =  "UPDATE " + helper.tableName + " SET FindAvg = '" + Float.valueOf(dbAvg) +"' WHERE id = '" + id + "'";
             cursor = database.rawQuery(sql, null);
             helper.updateFindAvgUser(database,id, dbAvg);
 
@@ -127,11 +135,13 @@ public class GuessResult extends AppCompatActivity {
             expTxtView.setText("잘하셨습니다!");
 
             dbAvg = 80;
-            if(Float.valueOf(bfAvg) != null){
+            if(bfAvg == null){
+                //
+            }else if(Float.valueOf(bfAvg) != null){
                 dbAvg = (Float.valueOf(bfAvg) + dbAvg) /2;
                 System.out.println("수정됨 = " + dbAvg);
             }
-            sql =  "UPDATE " + helper.tableName + " SET FindAvg = '" + dbAvg +"' WHERE id = '" + id + "'";
+            sql =  "UPDATE " + helper.tableName + " SET FindAvg = '" + Float.valueOf(dbAvg) +"' WHERE id = '" + id + "'";
             cursor = database.rawQuery(sql, null);
             helper.updateFindAvgUser(database,id, dbAvg);
 
@@ -141,11 +151,13 @@ public class GuessResult extends AppCompatActivity {
             expTxtView.setText("축하합니다!");
 
             dbAvg = 100;
-            if(Float.valueOf(bfAvg) != null){
+            if(bfAvg == null){
+                //
+            }else if(Float.valueOf(bfAvg) != null){
                 dbAvg = (Float.valueOf(bfAvg) + dbAvg) /2;
                 System.out.println("수정됨 = " + dbAvg);
             }
-            sql =  "UPDATE " + helper.tableName + " SET FindAvg = '" + dbAvg +"' WHERE id = '" + id + "'";
+            sql =  "UPDATE " + helper.tableName + " SET FindAvg = '" + Float.valueOf(dbAvg) +"' WHERE id = '" + id + "'";
             cursor = database.rawQuery(sql, null);
             helper.updateFindAvgUser(database,id, dbAvg);
         }
@@ -167,7 +179,23 @@ public class GuessResult extends AppCompatActivity {
 
     // 계속하기
     public void NewButton(View view){
+        helper = new LoginDatabaseOpenHelper(GuessResult.this, LoginDatabaseOpenHelper.tableName, null, version);
+        database = helper.getWritableDatabase();
+
+        sql = "SELECT * FROM "+ helper.tableName + " WHERE id = '" + id + "'";
+        cursor = database.rawQuery(sql, null);
+
+        while(cursor.moveToNext()){
+            pw = cursor.getString(4);
+            name = cursor.getString(5);
+            age = cursor.getString(6);
+        }
+
         Intent intent = new Intent(getApplicationContext(), GuessActivity.class);
+        intent.putExtra("id", id);
+        intent.putExtra("pw", pw);
+        intent.putExtra("name", name);
+        intent.putExtra("age", age);
         startActivity(intent);
         score=0;
     }

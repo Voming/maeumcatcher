@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
@@ -81,6 +82,7 @@ public class EmotionGalleryActivity extends AppCompatActivity {
                     case R.id.angry:
                         makeFolder("angry");
                         FileList("angry");
+
                         break;
                     case R.id.disgust:
                         makeFolder("disgust");
