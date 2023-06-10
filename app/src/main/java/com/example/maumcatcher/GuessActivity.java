@@ -115,6 +115,7 @@ public class GuessActivity extends AppCompatActivity {
         }
 
         if(quid<6){
+            countDownTimer.cancel();
             currentQuestion = questionList.get(quid);
             setQuestionView();
         }else{
