@@ -69,6 +69,9 @@ public class FindSameResultActivity extends AppCompatActivity {
         cursor = database.rawQuery(sql, null);
 
         while(cursor.moveToNext()){
+            pw = cursor.getString(1);
+            name = cursor.getString(2);
+            age = cursor.getString(3);
             bfAvg = cursor.getString(5);
             System.out.println("bfAvg = " + bfAvg);
         }
@@ -81,7 +84,9 @@ public class FindSameResultActivity extends AppCompatActivity {
             extxt.setText("조금 더 노력해볼까요?");
 
             dbAvg = 0;
-            if(Float.valueOf(bfAvg) != null){
+            if(bfAvg == null){
+                //
+            }else if(Float.valueOf(bfAvg) != null){
                 dbAvg = (Float.valueOf(bfAvg) + dbAvg) /2;
                 System.out.println("수정됨 = " + dbAvg);
             }
@@ -95,7 +100,9 @@ public class FindSameResultActivity extends AppCompatActivity {
             extxt.setText("아쉬워요");
 
             dbAvg = 20;
-            if(Float.valueOf(bfAvg) != null){
+            if(bfAvg == null){
+                //
+            }else if(Float.valueOf(bfAvg) != null){
                 dbAvg = (Float.valueOf(bfAvg) + dbAvg) /2;
                 System.out.println("수정됨 = " + dbAvg);
             }
@@ -108,7 +115,9 @@ public class FindSameResultActivity extends AppCompatActivity {
             extxt.setText("아쉬워요");
 
             dbAvg = 40;
-            if(Float.valueOf(bfAvg) != null){
+            if(bfAvg == null){
+                //
+            }else if(Float.valueOf(bfAvg) != null){
                 dbAvg = (Float.valueOf(bfAvg) + dbAvg) /2;
                 System.out.println("수정됨 = " + dbAvg);
             }
@@ -121,7 +130,9 @@ public class FindSameResultActivity extends AppCompatActivity {
             extxt.setText("잘했어요");
 
             dbAvg = 60;
-            if(Float.valueOf(bfAvg) != null){
+            if(bfAvg == null){
+                //
+            }else if(Float.valueOf(bfAvg) != null){
                 dbAvg = (Float.valueOf(bfAvg) + dbAvg) /2;
                 System.out.println("수정됨 = " + dbAvg);
             }
@@ -134,7 +145,9 @@ public class FindSameResultActivity extends AppCompatActivity {
             extxt.setText("대단해요");
 
             dbAvg = 80;
-            if(Float.valueOf(bfAvg) != null){
+            if(bfAvg == null){
+                //
+            }else if(Float.valueOf(bfAvg) != null){
                 dbAvg = (Float.valueOf(bfAvg) + dbAvg) /2;
                 System.out.println("수정됨 = " + dbAvg);
             }
@@ -148,7 +161,9 @@ public class FindSameResultActivity extends AppCompatActivity {
             note.setVisibility(View.GONE);
 
             dbAvg = 100;
-            if(Float.valueOf(bfAvg) != null){
+            if(bfAvg == null){
+                //
+            }else if(Float.valueOf(bfAvg) != null){
                 dbAvg = (Float.valueOf(bfAvg) + dbAvg) /2;
                 System.out.println("수정됨 = " + dbAvg);
             }
@@ -161,18 +176,6 @@ public class FindSameResultActivity extends AppCompatActivity {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                helper = new LoginDatabaseOpenHelper(FindSameResultActivity.this, LoginDatabaseOpenHelper.tableName, null, version);
-                database = helper.getWritableDatabase();
-
-                sql = "SELECT * FROM "+ helper.tableName + " WHERE id = '" + id + "'";
-                cursor = database.rawQuery(sql, null);
-
-                while(cursor.moveToNext()){
-                    pw = cursor.getString(4);
-                    name = cursor.getString(5);
-                    age = cursor.getString(6);
-                }
-
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("id", id);
                 intent.putExtra("pw", pw);

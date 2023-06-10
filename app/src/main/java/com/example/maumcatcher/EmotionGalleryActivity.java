@@ -52,6 +52,8 @@ public class EmotionGalleryActivity extends AppCompatActivity {
 
     ScrollView scroll;
 
+    Context contextC;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,31 +84,37 @@ public class EmotionGalleryActivity extends AppCompatActivity {
                     case R.id.angry:
                         makeFolder("angry");
                         FileList("angry");
-
+                        angry.setBackgroundColor(contextC.getResources().getColor(R.color.pink));
                         break;
                     case R.id.disgust:
                         makeFolder("disgust");
                         FileList("disgust");
+                        angry.setBackgroundColor(contextC.getResources().getColor(R.color.pink));
                         break;
                     case R.id.fear:
                         makeFolder("fear");
                         FileList("fear");
+                        angry.setBackgroundColor(contextC.getResources().getColor(R.color.pink));
                         break;
                     case R.id.happy:
                         makeFolder("happy");
                         FileList("happy");
+                        angry.setBackgroundColor(contextC.getResources().getColor(R.color.pink));
                         break;
                     case R.id.neutral:
                         makeFolder("neutral");
                         FileList("neutral");
+                        angry.setBackgroundColor(contextC.getResources().getColor(R.color.pink));
                         break;
                     case R.id.sad:
                         makeFolder("sad");
                         FileList("sad");
+                        angry.setBackgroundColor(contextC.getResources().getColor(R.color.pink));
                         break;
                     case R.id.surprise:
                         makeFolder("surprise");
                         FileList("surprise");
+                        angry.setBackgroundColor(contextC.getResources().getColor(R.color.pink));
                         break;
                 }
             }

@@ -40,7 +40,6 @@ public class GuessResult extends AppCompatActivity {
 
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
-
         System.out.println("id = " +id);
 
         TextView scoreTxtView = (TextView) findViewById(R.id.scoreTXT);
@@ -58,6 +57,9 @@ public class GuessResult extends AppCompatActivity {
         cursor = database.rawQuery(sql, null);
 
         while(cursor.moveToNext()){
+            pw = cursor.getString(1);
+            name = cursor.getString(2);
+            age = cursor.getString(3);
             bfAvg = cursor.getString(4);
             System.out.println("bfAvg = " + bfAvg);
         }
@@ -179,19 +181,7 @@ public class GuessResult extends AppCompatActivity {
 
     // 계속하기
     public void NewButton(View view){
-        helper = new LoginDatabaseOpenHelper(GuessResult.this, LoginDatabaseOpenHelper.tableName, null, version);
-        database = helper.getWritableDatabase();
-
-        sql = "SELECT * FROM "+ helper.tableName + " WHERE id = '" + id + "'";
-        cursor = database.rawQuery(sql, null);
-
-        while(cursor.moveToNext()){
-            pw = cursor.getString(4);
-            name = cursor.getString(5);
-            age = cursor.getString(6);
-        }
-
-        Intent intent = new Intent(getApplicationContext(), GuessActivity.class);
+        Intent intent = new Intent(GuessResult.this, GuessActivity.class);
         intent.putExtra("id", id);
         intent.putExtra("pw", pw);
         intent.putExtra("name", name);
@@ -202,19 +192,7 @@ public class GuessResult extends AppCompatActivity {
 
     // 나가기
     public void EndButton(View view){
-        helper = new LoginDatabaseOpenHelper(GuessResult.this, LoginDatabaseOpenHelper.tableName, null, version);
-        database = helper.getWritableDatabase();
-
-        sql = "SELECT * FROM "+ helper.tableName + " WHERE id = '" + id + "'";
-        cursor = database.rawQuery(sql, null);
-
-        while(cursor.moveToNext()){
-            pw = cursor.getString(4);
-            name = cursor.getString(5);
-            age = cursor.getString(6);
-        }
-
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(GuessResult.this, MainActivity.class);
         intent.putExtra("id", id);
         intent.putExtra("pw", pw);
         intent.putExtra("name", name);

@@ -61,9 +61,22 @@ public class AverageActivity extends AppCompatActivity {
             System.out.println("Avg3v = " + Avg3);
         }
 
-        game1.setText(Avg1.toString() + "%");
-        game2.setText(Avg2.toString() + "%");
-        //game3.setText(Avg3.toString() + "%");  //개발되면 수정
+        if(Avg1 == null){
+            game1.setText("0%");
+        }else{
+            game1.setText(Avg1.toString() + "%");
+        }
+        if(Avg2 == null){
+            game2.setText("0%");
+        }else{
+            game2.setText(Avg2.toString() + "%");
+        }
+        if(Avg3 == null){
+            game3.setText("0%");
+        }else{
+            game3.setText(Avg3.toString() + "%");
+        }
+
 
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
