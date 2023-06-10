@@ -35,19 +35,24 @@ public class FeelingDB extends SQLiteOpenHelper {
     }
 
     //get all question in listview
-    public List <GuessQuestion> getAllQuestions(){
-        List <GuessQuestion> questionList = new ArrayList<GuessQuestion>();
+    public List <FeelingQuestion> getAllQuestions(){
+        List <FeelingQuestion> questionList = new ArrayList<FeelingQuestion>();
 
         dbase = this.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + DB_TABLE;
+        String selectQuery = "SELECT * FROM " + DB_TABLE + " ORDER BY RANDOM()";
         Cursor cursor = dbase.rawQuery(selectQuery,null);
         rowCount = cursor.getCount();
 
         if(cursor.moveToFirst()){
             do{
-                GuessQuestion q = new GuessQuestion();
+                FeelingQuestion q = new FeelingQuestion();
                 q.setQuestion(cursor.getString(4));
                 q.setAnswer(cursor.getString(0));
+                q.setOption1(cursor.getString(0));
+                cursor.moveToNext();
+                q.setOption2(cursor.getString(0));
+                cursor.moveToNext();
+                q.setOption3(cursor.getString(0));
 
                 //add question in list
                 questionList.add(q);

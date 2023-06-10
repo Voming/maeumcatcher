@@ -1,28 +1,61 @@
 package com.example.maumcatcher;
 
 public class FeelingQuestion {
+
+    private int id;
     private String question;
+    private String choice;
+    private String answer;
     private String option1;
     private String option2;
     private String option3;
-    private int answerNr;
 
-    public FeelingQuestion(){}
+
+    public FeelingQuestion() {
+        id = 0;
+        question = "";
+        choice = "";
+    }
 
     public FeelingQuestion(String question, String option1, String option2, String option3, int answerNr) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
-        this.answerNr = answerNr;
+        this.choice = choice;
+        this.answer = answer;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public String getChoice() {
+        return choice;
     }
 
     public String getQuestion() {
         return question;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setQuestion(String question) {
         this.question = question;
+    }
+
+    public void setChoice(String choice) {
+        this.choice = choice;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public String getOption1() {
@@ -49,11 +82,4 @@ public class FeelingQuestion {
         this.option3 = option3;
     }
 
-    public int getAnswerNr() {
-        return answerNr;
-    }
-
-    public void setAnswerNr(int answerNr) {
-        this.answerNr = answerNr;
-    }
 }
