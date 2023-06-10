@@ -24,7 +24,7 @@ public class GuessResult extends AppCompatActivity {
     public ArrayList<String> SelectedAnswer = new ArrayList<String>();
     public ArrayList<String> ActualAnswer = new ArrayList<String>();
 
-    String id;
+    String id, pw, name, age;
     float dbAvg;
     int version = 1;
     LoginDatabaseOpenHelper helper;
@@ -174,7 +174,23 @@ public class GuessResult extends AppCompatActivity {
 
     // 나가기
     public void EndButton(View view){
+        helper = new LoginDatabaseOpenHelper(GuessResult.this, LoginDatabaseOpenHelper.tableName, null, version);
+        database = helper.getWritableDatabase();
+
+        sql = "SELECT * FROM "+ helper.tableName + " WHERE id = '" + id + "'";
+        cursor = database.rawQuery(sql, null);
+
+        while(cursor.moveToNext()){
+            pw = cursor.getString(4);
+            name = cursor.getString(5);
+            age = cursor.getString(6);
+        }
+
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("id", id);
+        intent.putExtra("pw", pw);
+        intent.putExtra("name", name);
+        intent.putExtra("age", age);
         startActivity(intent);
         score=0;
     }

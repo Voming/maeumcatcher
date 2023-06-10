@@ -21,8 +21,8 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@mipmap/ic_logo"
+        android:label="마음캐쳐"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaumCatcher"
         tools:targetApi="31">

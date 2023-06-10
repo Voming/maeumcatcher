@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         pw = getintent.getStringExtra("pw");
         name = getintent.getStringExtra("name");
         age = getintent.getStringExtra("age");
+        System.out.println("id = " +id);
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameLayout, playfragment).commitAllowingStateLoss();
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.frameLayout, playfragment).commitAllowingStateLoss();
                     Bundle bundle1 = new Bundle();
                     bundle1.putString("id", id);
+                    System.out.println("id = " +id);
                     playfragment.setArguments(bundle1);
                     break;
                 case R.id.emotionItem:
