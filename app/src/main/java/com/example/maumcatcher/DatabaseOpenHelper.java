@@ -13,7 +13,6 @@ import java.io.OutputStream;
 public class DatabaseOpenHelper extends SQLiteAssetHelper {
 
     // database 의 파일 경로
-    // C:/Users/apf_temp_admin/AndroidStudioProjects/maeumcatcher/app/src/main/assets
     private static String DB_PATH = "/data/data/com.example.maumcatcher/databases/";
     private static final String DB_NAME = "varietyEmotion.db";
     private static final int DB_VERSION = 1;
