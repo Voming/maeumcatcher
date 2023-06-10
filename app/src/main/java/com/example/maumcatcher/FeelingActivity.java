@@ -139,7 +139,7 @@ public class FeelingActivity extends AppCompatActivity {
             // 최종 커밋, 저장
             editor.commit();
 
-            Intent intent = new Intent(FeelingActivity.this, GuessResult.class);
+            Intent intent = new Intent(FeelingActivity.this, FeelingResult.class);
             intent.putStringArrayListExtra("answerList", EXanswerList);
             intent.putStringArrayListExtra("selectedAnswer", EXselectedAnswer);
             intent.putStringArrayListExtra("actualAnswer", EXactualAnswer);

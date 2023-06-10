@@ -1,7 +1,7 @@
 package com.example.maumcatcher;
 
-import static com.example.maumcatcher.GuessActivity.result;
-import static com.example.maumcatcher.GuessActivity.score;
+import static com.example.maumcatcher.FeelingActivity.result;
+import static com.example.maumcatcher.FeelingActivity.score;
 
 import android.content.Context;
 import android.content.Intent;
@@ -70,7 +70,7 @@ public class FeelingResult extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(FeelingResult.this, GuessActivity.class);
+        Intent intent = new Intent(FeelingResult.this, FeelingActivity.class);
         startActivity(intent);
     }
 
@@ -83,14 +83,14 @@ public class FeelingResult extends AppCompatActivity {
 
     // 나가기
     public void EndButton(View view){
-        Intent intent = new Intent(getApplicationContext(), FeelingFragment.class);
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
         score=0;
     }
 
     // 오답노트
     public void checkAnswer(View view){
-        Intent intent = new Intent(FeelingResult.this, GuessCheck.class);
+        Intent intent = new Intent(FeelingResult.this, FeelingCheck.class);
         intent.putStringArrayListExtra("answerList", AnswerList);
         intent.putStringArrayListExtra("selectedAnswer", SelectedAnswer);
         intent.putStringArrayListExtra("actualAnswer", ActualAnswer);

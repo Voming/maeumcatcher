@@ -49,6 +49,12 @@
             android:name=".GuessCheck"
             android:exported="false" />
         <activity
+            android:name=".FeelingResult"
+            android:exported="false" />
+        <activity
+            android:name=".FeelingCheck"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
