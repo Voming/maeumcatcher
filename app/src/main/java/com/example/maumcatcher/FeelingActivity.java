@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -75,11 +76,20 @@ public class FeelingActivity extends AppCompatActivity {
 
     }
 
+
     private void setQuestionView(){
         txtQuestion.setText(currentQuestion.getQuestion());
-        btn1.setText(currentQuestion.getOption1());
-        btn2.setText(currentQuestion.getOption2());
-        btn3.setText(currentQuestion.getOption3());
+        ArrayList<String> options = new ArrayList<>();
+        options.add(currentQuestion.getOption1());
+        options.add(currentQuestion.getOption2());
+        options.add(currentQuestion.getOption3());
+
+        Collections.shuffle(options);
+
+        btn1.setText(options.get(0));
+        btn2.setText(options.get(1));
+        btn3.setText(options.get(2));
+
         ProgressBar progressbar = (ProgressBar) findViewById(R.id.progressBar);
         progressbar.setProgress(quid);
         progressbar.setIndeterminate(false);
