@@ -70,6 +70,7 @@
                 android:backgroundTint="@color/darkbrown"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:onClick="EndButton"
                 android:text="나가기" />
 
             <Button
@@ -80,6 +81,7 @@
                 android:backgroundTint="@color/darkbrown"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:onClick="NewButton"
                 android:text="다시 하기" />
 
         </LinearLayout>
@@ -93,6 +95,7 @@
             android:textSize="14sp"
             android:textColor="@color/darkbrown"
             android:textStyle="bold"
+            android:onClick="checkAnswer"
             android:text="오답노트" />
 
     </LinearLayout>
