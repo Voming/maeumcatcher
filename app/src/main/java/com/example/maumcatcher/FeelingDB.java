@@ -44,19 +44,21 @@ public class FeelingDB extends SQLiteOpenHelper {
         rowCount = cursor.getCount();
 
         if(cursor.moveToFirst()){
+
             do{
-                FeelingQuestion q = new FeelingQuestion();
-                q.setQuestion(cursor.getString(4));
-                q.setAnswer(cursor.getString(0));
-                q.setOption1(cursor.getString(0));
-                cursor.moveToNext();
-                q.setOption2(cursor.getString(0));
-                cursor.moveToNext();
-                q.setOption3(cursor.getString(0));
+                for (int i = 0; i < 5; i++) {
+                    FeelingQuestion q = new FeelingQuestion();
+                    q.setQuestion(cursor.getString(4));
+                    q.setAnswer(cursor.getString(0));
+                    q.setOption1(cursor.getString(0));
+                    cursor.moveToNext();
+                    q.setOption2(cursor.getString(0));
+                    cursor.moveToNext();
+                    q.setOption3(cursor.getString(0));
 
-                //add question in list
-                questionList.add(q);
-
+                    //add question in list
+                    questionList.add(q);
+                }
                 //loop all rows
             }while (cursor.moveToNext());
         }
