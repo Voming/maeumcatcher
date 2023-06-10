@@ -51,6 +51,12 @@
             android:name=".GuessCheck"
             android:exported="false" />
         <activity
+            android:name=".FeelingResult"
+            android:exported="false" />
+        <activity
+            android:name=".FeelingCheck"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
@@ -97,6 +103,9 @@
             android:exported="false" />
         <activity
             android:name=".JoinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FeelingActivity"
             android:exported="false" />
         <activity
             android:name=".FindSameNoteActivity"
