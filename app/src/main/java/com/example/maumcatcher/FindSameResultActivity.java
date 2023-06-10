@@ -69,9 +69,6 @@ public class FindSameResultActivity extends AppCompatActivity {
         cursor = database.rawQuery(sql, null);
 
         while(cursor.moveToNext()){
-            pw = cursor.getString(1);
-            name = cursor.getString(2);
-            age = cursor.getString(3);
             bfAvg = cursor.getString(5);
             System.out.println("bfAvg = " + bfAvg);
         }
@@ -176,6 +173,18 @@ public class FindSameResultActivity extends AppCompatActivity {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                helper = new LoginDatabaseOpenHelper(FindSameResultActivity.this, LoginDatabaseOpenHelper.tableName, null, version);
+                database = helper.getWritableDatabase();
+
+                sql = "SELECT * FROM "+ helper.tableName + " WHERE id = '" + id + "'";
+                cursor = database.rawQuery(sql, null);
+
+                while(cursor.moveToNext()){
+                    pw = cursor.getString(1);
+                    name = cursor.getString(2);
+                    age = cursor.getString(3);
+                }
+
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("id", id);
                 intent.putExtra("pw", pw);
@@ -187,7 +196,23 @@ public class FindSameResultActivity extends AppCompatActivity {
         retry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                helper = new LoginDatabaseOpenHelper(FindSameResultActivity.this, LoginDatabaseOpenHelper.tableName, null, version);
+                database = helper.getWritableDatabase();
+
+                sql = "SELECT * FROM "+ helper.tableName + " WHERE id = '" + id + "'";
+                cursor = database.rawQuery(sql, null);
+
+                while(cursor.moveToNext()){
+                    pw = cursor.getString(1);
+                    name = cursor.getString(2);
+                    age = cursor.getString(3);
+                }
+
                 Intent intent = new Intent(getApplicationContext(), FindSameEmotionActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("pw", pw);
+                intent.putExtra("name", name);
+                intent.putExtra("age", age);
                 startActivity(intent);
             }
         });

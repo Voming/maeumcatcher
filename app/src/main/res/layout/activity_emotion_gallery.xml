@@ -27,70 +27,83 @@
             android:layout_height="80dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
-            <Button
+            <android.widget.Button
                 android:id="@+id/angry"
                 android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:textSize="14sp"
                 android:text="화난 표정"
                 android:layout_marginLeft="5dp"
-                android:backgroundTint="@color/darkbrown"
+                android:textColor="@color/white"
+                android:background="@color/darkbrown"
                 android:textStyle="bold"/>
-            <Button
+            <android.widget.Button
                 android:id="@+id/disgust"
                 android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="14sp"
+
                 android:text="싫은 표정"
                 android:layout_marginLeft="5dp"
-                android:textSize="14sp"
-                android:backgroundTint="@color/darkbrown"
+                android:textColor="@color/white"
+                android:background="@color/darkbrown"
                 android:textStyle="bold"/>
 
-            <Button
+            <android.widget.Button
                 android:id="@+id/fear"
                 android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="14sp"
+
                 android:layout_marginLeft="5dp"
                 android:text="두려운 표정"
-                android:textSize="14sp"
-                android:backgroundTint="@color/darkbrown"
+                android:textColor="@color/white"
+                android:background="@color/darkbrown"
                 android:textStyle="bold"/>
 
-            <Button
+            <android.widget.Button
                 android:id="@+id/happy"
                 android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
+                android:textSize="14sp"
+
                 android:text="행복한 표정"
                 android:layout_marginLeft="5dp"
-                android:textSize="14sp"
-                android:backgroundTint="@color/darkbrown"
+                android:textColor="@color/white"
+                android:background="@color/darkbrown"
                 android:textStyle="bold"/>
-            <Button
+            <android.widget.Button
                 android:id="@+id/neutral"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:textSize="14sp"
+
                 android:text="무표정"
                 android:layout_marginLeft="5dp"
-                android:textSize="14sp"
-                android:backgroundTint="@color/darkbrown"
+                android:textColor="@color/white"
+                android:background="@color/darkbrown"
                 android:textStyle="bold"/>
-            <Button
+            <android.widget.Button
                 android:id="@+id/sad"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="슬픈 표정"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
                 android:textSize="14sp"
+
+                android:text="슬픈 표정"
                 android:layout_marginLeft="5dp"
-                android:backgroundTint="@color/darkbrown"
+                android:textColor="@color/white"
+                android:background="@color/darkbrown"
                 android:textStyle="bold"/>
-            <Button
+            <android.widget.Button
                 android:id="@+id/surprise"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:textSize="14sp"
+
                 android:text="놀란 표정"
                 android:layout_marginLeft="5dp"
-                android:textSize="14sp"
-                android:backgroundTint="@color/darkbrown"
+                android:textColor="@color/white"
+                android:background="@color/darkbrown"
                 android:textStyle="bold"/>
 
         </LinearLayout>
