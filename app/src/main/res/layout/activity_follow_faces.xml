@@ -75,6 +75,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:backgroundTint="@color/darkbrown"
+            android:textSize="14sp"
             android:text="촬영 하기"
             android:textStyle="bold"/>
 
