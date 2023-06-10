@@ -63,14 +63,14 @@ public class FeelingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_play,container,false);
+        view = inflater.inflate(R.layout.fragment_feeling,container,false);
 
         btn1 = (ImageButton) view.findViewById(R.id.imageButton1);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),PlaySubActivity.class); //fragment라서 activity intent와는 다른 방식
+                Intent intent = new Intent(getActivity(),FeelingActivity.class); //fragment라서 activity intent와는 다른 방식
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
