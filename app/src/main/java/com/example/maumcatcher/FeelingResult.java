@@ -216,10 +216,26 @@ public class FeelingResult extends AppCompatActivity {
 
     // 오답노트
     public void checkAnswer(View view){
+        helper = new LoginDatabaseOpenHelper(FeelingResult.this, LoginDatabaseOpenHelper.tableName, null, version);
+        database = helper.getWritableDatabase();
+
+        sql = "SELECT * FROM "+ helper.tableName + " WHERE id = '" + id + "'";
+        cursor = database.rawQuery(sql, null);
+
+        while(cursor.moveToNext()){
+            pw = cursor.getString(1);
+            name = cursor.getString(2);
+            age = cursor.getString(3);
+        }
+
         Intent intent = new Intent(FeelingResult.this, FeelingCheck.class);
         intent.putStringArrayListExtra("answerList", AnswerList);
         intent.putStringArrayListExtra("selectedAnswer", SelectedAnswer);
         intent.putStringArrayListExtra("actualAnswer", ActualAnswer);
+        intent.putExtra("id", id);
+        intent.putExtra("pw", pw);
+        intent.putExtra("name", name);
+        intent.putExtra("age", age);
         startActivity(intent);
         //finish();
     }

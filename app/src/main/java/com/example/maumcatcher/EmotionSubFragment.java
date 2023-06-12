@@ -17,6 +17,22 @@ public class EmotionSubFragment extends Fragment {
     private ImageButton btn2;
 
 
+    String id;
+
+
+    public EmotionSubFragment() {
+        // Required empty public constructor
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle extra = getArguments();
+
+        if(extra != null){
+            id = extra.getString("id");
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,6 +50,7 @@ public class EmotionSubFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),FollowFacesActivity.class); //fragment라서 activity intent와는 다른 방식
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
         });
@@ -42,6 +59,7 @@ public class EmotionSubFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),EmotionGalleryActivity.class); //fragment라서 activity intent와는 다른 방식
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
         });

@@ -2,6 +2,7 @@ package com.example.maumcatcher;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -51,11 +52,15 @@ public class EmotionGalleryActivity extends AppCompatActivity {
 
     ScrollView scroll;
 
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emotion_gallery);
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
 
         linear = findViewById(R.id.list);
         layoutInflater = LayoutInflater.from(this);

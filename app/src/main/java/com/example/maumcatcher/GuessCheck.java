@@ -3,7 +3,9 @@ package com.example.maumcatcher;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,11 +21,23 @@ public class GuessCheck extends AppCompatActivity {
     public ArrayList<String> ActualAnswer = new ArrayList<String>();
     private ArrayList<GuessQuestion> m_parts = new ArrayList<GuessQuestion>();
 
+    String id, pw, name, age;
+
+    Button exit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.guessname_check);
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
+        pw = intent.getStringExtra("pw");
+        name = intent.getStringExtra("name");
+        age = intent.getStringExtra("age");
+
         listView = findViewById(R.id.checklistView);
+        exit = findViewById(R.id.exit);
 
         AnswerList = guessResult.AnswerList;
         SelectedAnswer = guessResult.SelectedAnswer;
@@ -48,13 +62,30 @@ public class GuessCheck extends AppCompatActivity {
         GuessListAdapter listAdapter = new GuessListAdapter(this, R.layout.guessname_list, m_parts);
         listView.setAdapter(listAdapter);
 
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("pw", pw);
+                intent.putExtra("name", name);
+                intent.putExtra("age", age);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(GuessCheck.this, GuessResult.class);
+        intent.putExtra("id", id);
+        intent.putExtra("pw", pw);
+        intent.putExtra("name", name);
+        intent.putExtra("age", age);
         startActivity(intent);
     }
+
+
 
 }

@@ -49,7 +49,7 @@ public class FollowFacesActivity extends AppCompatActivity {
 
     Bitmap imageBitmap;
 
-
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +61,9 @@ public class FollowFacesActivity extends AppCompatActivity {
         retry = findViewById(R.id.retry);
         review = findViewById(R.id.review);
         textView2 = findViewById(R.id.textView2);
+
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
 
         Random ram = new Random();
         num = ram.nextInt(img.length);
@@ -113,7 +116,7 @@ public class FollowFacesActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), CheckEmotionActivity.class);
                 intent.putExtra("사진", imageBitmap);
                 intent.putExtra("감정", emotion);
-
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
         });

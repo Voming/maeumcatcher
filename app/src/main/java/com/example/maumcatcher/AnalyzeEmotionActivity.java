@@ -3,6 +3,8 @@ package com.example.maumcatcher;
 
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,6 +58,13 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
     String value_kr;
     int result;
 
+    String id, pw, name, age;
+    int version = 1;
+    LoginDatabaseOpenHelper helper;
+    SQLiteDatabase database;
+
+    String sql;
+    Cursor cursor;
 
 
     @Override
@@ -66,6 +75,7 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         bitmap = intent.getParcelableExtra("사진");
         emotion = intent.getStringExtra("감정");
+        id = intent.getStringExtra("id");
 
 
         level = findViewById(R.id.level);
@@ -182,8 +192,23 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                helper = new LoginDatabaseOpenHelper(AnalyzeEmotionActivity.this, LoginDatabaseOpenHelper.tableName, null, version);
+                database = helper.getWritableDatabase();
 
+                sql = "SELECT * FROM "+ helper.tableName + " WHERE id = '" + id + "'";
+                cursor = database.rawQuery(sql, null);
+
+                while(cursor.moveToNext()){
+                    pw = cursor.getString(1);
+                    name = cursor.getString(2);
+                    age = cursor.getString(3);
+                }
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("pw", pw);
+                intent.putExtra("name", name);
+                intent.putExtra("age", age);
                 startActivity(intent);
             }
         });
@@ -191,7 +216,7 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), FollowFacesActivity.class);
-
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
         });
@@ -235,8 +260,23 @@ public class AnalyzeEmotionActivity extends AppCompatActivity {
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), EmotionGalleryActivity.class);
+                helper = new LoginDatabaseOpenHelper(AnalyzeEmotionActivity.this, LoginDatabaseOpenHelper.tableName, null, version);
+                database = helper.getWritableDatabase();
 
+                sql = "SELECT * FROM "+ helper.tableName + " WHERE id = '" + id + "'";
+                cursor = database.rawQuery(sql, null);
+
+                while(cursor.moveToNext()){
+                    pw = cursor.getString(1);
+                    name = cursor.getString(2);
+                    age = cursor.getString(3);
+                }
+
+                Intent intent = new Intent(getApplicationContext(), EmotionGalleryActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("pw", pw);
+                intent.putExtra("name", name);
+                intent.putExtra("age", age);
                 startActivity(intent);
             }
         });

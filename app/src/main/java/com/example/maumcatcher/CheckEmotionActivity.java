@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -34,6 +36,14 @@ public class CheckEmotionActivity extends AppCompatActivity {
     String emotion = "";
     Bitmap bitmap;
     Intent intent;
+    String id, pw, name, age;
+    int version = 1;
+    LoginDatabaseOpenHelper helper;
+    SQLiteDatabase database;
+
+    String sql;
+    Cursor cursor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +52,7 @@ public class CheckEmotionActivity extends AppCompatActivity {
         intent = getIntent();
         bitmap = intent.getParcelableExtra("사진");
         emotion = intent.getStringExtra("감정");
+        id = intent.getStringExtra("id");
 
 
         System.out.print(emotion);
@@ -76,7 +87,22 @@ public class CheckEmotionActivity extends AppCompatActivity {
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                helper = new LoginDatabaseOpenHelper(CheckEmotionActivity.this, LoginDatabaseOpenHelper.tableName, null, version);
+                database = helper.getWritableDatabase();
+
+                sql = "SELECT * FROM "+ helper.tableName + " WHERE id = '" + id + "'";
+                cursor = database.rawQuery(sql, null);
+
+                while(cursor.moveToNext()){
+                    pw = cursor.getString(1);
+                    name = cursor.getString(2);
+                    age = cursor.getString(3);
+                }
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("pw", pw);
+                intent.putExtra("name", name);
+                intent.putExtra("age", age);
                 startActivity(intent);
             }
         });
@@ -86,7 +112,7 @@ public class CheckEmotionActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), AnalyzeEmotionActivity.class);
                 intent.putExtra("사진", bitmap);
                 intent.putExtra("감정", emotion);
-
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
         });

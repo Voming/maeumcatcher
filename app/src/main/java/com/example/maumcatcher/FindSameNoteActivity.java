@@ -51,6 +51,8 @@ public class FindSameNoteActivity extends AppCompatActivity {
     Button exit;
     int resultNum = 0;
 
+    String id, pw,name,age;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,11 @@ public class FindSameNoteActivity extends AppCompatActivity {
         correct = intent.getIntExtra("correct", 0);
         incorrectNum = intent.getIntExtra("incorrectNum",0);
         incorrect = intent.getIntArrayExtra("incorrect");
+
+        id = intent.getStringExtra("id");
+        pw = intent.getStringExtra("pw");
+        name = intent.getStringExtra("name");
+        age = intent.getStringExtra("age");
 
         System.out.println("맞은개수" + correct);
         System.out.println("틀린개수" + incorrectNum);
@@ -130,6 +137,10 @@ public class FindSameNoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("pw", pw);
+                intent.putExtra("name", name);
+                intent.putExtra("age", age);
                 startActivity(intent);
             }
         });
